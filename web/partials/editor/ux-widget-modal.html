@@ -1,0 +1,103 @@
+<div class="modal-header">
+	<button class="close"><i class="fa fa-times"></i></button>
+	<h3 class="modal-title">Web Page Settings</h3>
+</div>
+<div class="modal-body">
+	<div class="form-group">
+		<label class="control-label">URL</label>
+		<input type="text" class="form-control" value="https://docs.google.com/presentation/d/1_7U_0kJ1duhRwzO0kTa2ARDrRfA83t1e11irvxt7uNw/pub?start=false&loop=false&delayms=3000">
+		<p class="text-danger half-top">This Web Page does not allow being rendered in an iframe.</p>
+	</div>
+	<div class="checkbox">
+    <label>
+      <input type="checkbox"> Remove Validation
+    </label>
+  </div>
+  <div class="form-group">
+  	<label class="control-label">Refresh Interval</label>
+  	<div class="row">
+  		<div class="col-sm-4">
+  			<select class="form-control">
+  				<option>Never Refresh</option>
+  				<option>1 min</option>
+  				<option>5 min</option>
+  				<option>30 min</option>
+  				<option>60 min</option>
+  			</select>
+  		</div>
+  	</div>
+  	
+  </div>
+  <hr>
+  <h4>Region</h4>
+  <div class="radio">
+    <label>
+      <input type="radio" ng-model="content" value="first" ng-value="first"> Show Entire Page
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" ng-model="content" value="other"> Show a Region
+    </label>
+  </div>
+  <div ng-show="content == 'other'">
+  	<div class="form-group">
+  		<div class="row">
+  			<div class="col-sm-4">
+  				<label class="control-label">Horizontal Scroll</label>
+  				<div class="input-group">
+  				
+  				<input type="text" class="form-control">
+  				<span class="input-group-addon">px</span>
+  				</div>
+  			</div>
+  		</div><!--row-->
+  	</div><!--form-group-->
+  	<div class="form-group">
+  		<div class="row">
+  			<div class="col-sm-4">
+  				<label class="control-label">Vertical Scroll</label>
+  				<div class="input-group">
+  				<input type="text" class="form-control">
+  				<span class="input-group-addon">px</span>
+  				</div>
+  			</div><!--col-->
+  		</div><!--row-->
+  	</div>
+  </div><!--other-->
+  <hr>
+  <h4>Zoom</h4>
+  <div class="form-group">
+  	<div class="row">
+  		<div class="col-sm-4">
+  			<select class="form-control">
+  				<option>Scale to Fit</option>
+  				<option>100%</option>
+  				<option>50%</option>
+  				<option>75%</option>
+  				<option>125%</option>
+  				<option>150%</option>
+  				<option>200%</option>
+  			</select>
+  		</div>
+  	</div>
+  	
+  </div>
+  <hr>
+  <h4>Interactivity Settings</h4>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" checked="checked"> Allow Interaction
+    </label>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" checked="checked"> Scrollbars Enabled
+    </label>
+  </div>
+
+</div><!--modal-body-->
+<div class="modal-footer">
+	<button class="btn btn-default">Cancel <i class="fa fa-times icon-right"></i></button>
+	<button class="btn btn-primary">Save <i class="fa fa-check icon-right"></i></button>
+</div>
