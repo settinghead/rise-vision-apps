@@ -26,15 +26,15 @@
 
   </div>
 
-<div class="form-group text-center" style="text-align: center;margin: 24px;" ng-hide="showme">
+<div class="form-group text-center add-top" ng-init="displayType = 'showStart'" ng-hide="displayType == 'showID' || displayType == 'showEmail'">
     <label class="control-label"> Name Your Display</label>
     <input type="text" class="form-control" placeholder="Display Name" id="name" name="name">
-    <button class="btn btn-primary" style="margin-top:15px;" ng-click="showme=true">Next</span>
+    <button class="btn btn-primary add-top" ng-click="displayType = 'showID'">Next</span>
         </i>
     </button>
 </div>
 
-<div ng-show="showme" class="text-center">
+<div ng-show="displayType == 'showID'" ng-hide="displayType == 'showEmail' || displayType == 'showStart'" class="text-center add-top" >
     <h4>Complete 'Front Office' Display by installing Rise Player</h4>
     <p>1. Install Rise Player on your Media Player</p>
     
@@ -65,10 +65,20 @@
     <p class="half-top text-center"> 
     <p>We’ve also emailed these instructions to <b>miranda@flowershop.com<</b></p>
     
-        <button class="btn btn-default half-top">Send To Another E-Mail</button>
+        <button class="btn btn-default half-top" ng-click="displayType = 'showEmail'">Send To Another E-Mail</button>
     </p>
 </div>
 
+<div class="add-top" ng-hide="displayType == 'showID' || displayType == 'showStart'" ng-show="displayType == 'showEmail'" >
+
+  <h4 class="text-center">Send To Another E-Mail</h4>
+        <div class="form-group text-center">
+         
+          <input type="email" class="form-control" placeholder="Enter Email Address" id="name" name="name">
+          <button class="btn btn-default add-top">Cancel</button>
+          <button class="btn btn-primary add-top">Send</button>
+       </div>
+ </div>
 
 
 
