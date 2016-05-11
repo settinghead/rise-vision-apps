@@ -31,26 +31,12 @@
     
   
     <div ng-show="addPresentation">
-    <div class="text-right add-top add-bottom" style="position: relative; z-index: 200;">
-      <button class="btn btn-default" ng-click="showHelp = !showHelp">How does this work <i class="fa fa-question icon-right"></i></button>
+    <div class="text-right add-top add-bottom">
+      <button class="btn btn-link" ng-click="showHelp = !showHelp">How does this work <i class="fa fa-question"></i></button>
     </div>
 
-    <style type="text/css">
-      .video-box video {
-        text-align: center;
-      }
-      .video-box {
-        position: relative;
-        z-index: 100;
-        margin-top: -53px;
-        overflow: hidden;
-        border-radius: 4px;
-        margin-bottom: 16px;
-        text-align: center;
-      }
-    </style>
 
-    <div class="video-box" ng-show="showHelp">
+    <div class="video-box add-bottom" ng-show="showHelp">
       <video class="demo img-responsive" ng-show="showHelp" autoplay loop preload="auto" poster="https://s3.amazonaws.com/Rise-Images/Animations/loader.png">
       <source src="https://s3.amazonaws.com/Rise-Images/Animations/howitworks.mp4" type="video/mp4">
       Your browser does not support the video tag.
