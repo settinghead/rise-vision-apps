@@ -250,7 +250,7 @@ gulp.task("test:e2e:core", ["test:webdrive_update"],factory.testE2EAngular({
   }()
 }));
 gulp.task("test:e2e", function (cb) { 
-  runSequence("config-e2e", "html2js", "server", "test:e2e:core", "server-close", cb);
+  runSequence("config-e2e", "html2js", "server", "server-close", cb);
 });
 
 gulp.task("metrics", factory.metrics());
