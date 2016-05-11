@@ -17,35 +17,19 @@
 <!--      INSTALL PLAYER      -->
 <div ng-show="displayId && !display.lastActivityDate">
 
-    <div class="text-right add-top add-bottom" style="position: relative; z-index: 200;">
+    <div class="text-right add-top add-bottom">
       <button class="btn btn-link" ng-click="showHelp = !showHelp">How do I install Rise Player <i class="fa fa-question icon-right"></i></button>
     </div>
 
-    <style type="text/css">
-      .video-box video {
-        text-align: center;
 
-      }
-      .video-box {
-        position: relative;
-        z-index: 100;
-        margin-top: -53px;
-        overflow: hidden;
-        border: 2px solid #CCC;
-        border-radius: 4px;
-        margin-bottom: 16px;
-        text-align: center;
-      }
-    </style>
-
-    <div class="video-box" ng-show="showHelp">
-      <video class="demo img-responsive" ng-show="showHelp" autoplay loop preload="auto" poster="https://s3.amazonaws.com/Rise-Images/Animations/loader.png" style="margin: 0 auto; top: 3px; position: relative;">
+    <div class="video-box add-bottom" ng-show="showHelp">
+      <video class="demo img-responsive" style="margin: 0 auto" ng-show="showHelp" autoplay loop preload="auto" poster="https://s3.amazonaws.com/Rise-Images/Animations/loader.png">
       <source src="https://s3.amazonaws.com/Rise-Images/Animations/addadisplay.mp4" type="video/mp4">
       Your browser does not support the video tag.
       </video>
     </div>
 
- <!--  <hr /> -->
+ 
 
   <div class="panel panel-success display-panel"> 
     <div class="panel-heading"> 
@@ -74,34 +58,18 @@
   <hr />
 
   <div class="form-group form-inline">
-    <label class="control-label" translate>displays-app.fields.id</label>
-    <div class="form-control-static">{{display.id}}</div>
+    
     <!-- <a target="_blank" class="btn btn-link pull-right" href="https://help.risevision.com/user/create-a-display">
       <i class="fa fa-question-circle icon-left"></i>    
       {{ 'displays-app.fields.controls.howto' | translate }}
     </a> -->
-     <div class="text-right add-bottom" style="position: relative; z-index: 200; display: inline; float: right;">
-      <button class="btn btn-link" ng-click="showHelp = !showHelp">{{ 'displays-app.fields.controls.howto' | translate }}<!-- <i class="fa fa-question icon-right"></i> --></button>
+     <div class="text-right add-bottom pull-right">
+      <button class="btn btn-link" ng-click="showHelp = !showHelp">{{ 'displays-app.fields.controls.howto' | translate }} <i class="fa fa-question icon-right"></i></button>
     </div>
 
-    <style type="text/css">
-      .video-box video {
-        text-align: center;
-            margin: 0 auto;
-    top: 3px;
-    position: relative;
-      }
-      .video-box {
-        position: relative;
-        z-index: 100;
-        margin-top: -53px;
-        overflow: hidden;
-        border: 2px solid #CCC;
-        border-radius: 4px;
-        margin-bottom: 16px;
-        text-align: center;
-      }
-    </style>
+    <label class="control-label" translate>displays-app.fields.id</label>
+    <div class="form-control-static">{{display.id}}</div>
+
 
     <div class="video-box" ng-show="showHelp">
       <video class="demo img-responsive" ng-show="showHelp" autoplay loop preload="auto" poster="https://s3.amazonaws.com/Rise-Images/Animations/loader.png">
