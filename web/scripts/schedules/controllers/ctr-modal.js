@@ -21,9 +21,9 @@ angular.module('risevision.displays.controllers')
       });
     };
 
-    $scope.openAddDisplay= function () {
+    $scope.openScheduleDisplayAdd= function () {
       $modal.open({
-        templateUrl: "partials/displays/template-modal.html",
+        templateUrl: "partials/schedules/display-add.html",
         size: "md"
       });
     };
