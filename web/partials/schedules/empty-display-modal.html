@@ -1,0 +1,25 @@
+<div id="emptyDisplayModal" >
+
+
+
+<div class="modal-header">
+  <button id="dismissButton" type="button" class="close" ng-click="myClickEvent()">
+    <i class="fa fa-times"></i>
+  </button>
+  <h3 id="" class="modal-title">Select Display(s)</h3>
+</div>
+
+<div class="modal-body" ng-controller="distributionListController">
+   
+<div class="scrollable-list text-center"> <h4 class="text-muted add-bottom add-top">No Displays</h4> <button class="btn btn-primary btn-lg" ng-click="openAddDisplay()">Add Display <i class="fa fa-plus icon-right"></i></button> </div>
+
+ </div>
+
+
+<div class="modal-footer">
+    <button id="applyButton" class="btn-primary btn ng-click-active" onclick="$('.modal').modal('hide')">Apply <i class="fa fa-check icon-right"></i></button>
+    <button id="" class="btn btn-default" onclick="$('#emptyDisplayModal').fadeOut();$('.modal-backdrop').hide();$('#btnThreeDisplaysSelected').show();$('#btnNoDisplaysSelected').hide();">Cancel <i class="fa fa-times icon-right"></i></button>
+</div>
+
+
+</div>
