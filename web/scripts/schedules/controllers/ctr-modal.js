@@ -10,14 +10,14 @@ angular.module('risevision.displays.controllers')
     $scope.openEmpty = function () {
       $modal.open({
         templateUrl: "partials/schedules/empty-display-modal.html",
-        size: "md"
+        size: "lg"
       });
     };
 
     $scope.openFull= function () {
       $modal.open({
         templateUrl: "partials/schedules/full-display-modal.html",
-        size: "md"
+        size: "lg"
       });
     };
 

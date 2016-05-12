@@ -45,8 +45,13 @@
             </div>
             <p class="half-top text-center">
                 <p>We’ve also emailed these instructions to <b>miranda@flowershop.com<</b></p>
-                <button class="btn btn-default half-top" ng-click="displayType = 'showEmail'">Send To Another E-Mail</button>
-                <button class="btn btn-primary half-top" onclick="$('#protoModal').fadeOut();$('#emptyDisplayModal').fadeOut();$('.modal-backdrop').hide();$('#btnThreeDisplaysSelected').show();$('#btnNoDisplaysSelected').hide();" ng-click="openFull()">Done</button>
+                <button class="btn btn-default half-top" ng-click="displayType = 'showEmail'">
+                Send To Another E-Mail
+                <i class="fa fa-paper-plane icon-right"></i>
+                </button>
+                <button class="btn btn-default half-top" onclick="$('#protoModal').fadeOut();$('#emptyDisplayModal').fadeOut();$('.modal-backdrop').hide();$('#btnThreeDisplaysSelected').show();$('#btnNoDisplaysSelected').hide();" ng-click="openFull()">
+                <i class="fa fa-reply icon-left"></i>
+                Back To Display List</button>
             </p>
         </div>
         <div class="add-top" ng-hide="displayType == 'showID' || displayType == 'showStart'" ng-show="displayType == 'showEmail'">
