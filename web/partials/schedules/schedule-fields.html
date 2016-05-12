@@ -33,10 +33,9 @@
     <span id="distributeToAllText">Select All Displays</span>
   </label>
 
-  <div class="content-box-editable clickable input-group" ng-if="!distributeToAll"
-  style="    padding-bottom: 0; padding-right: 0;">
-    <div id="btnNoDisplaysSelected" ng-click="openEmpty()" class="label label-tag" style="margin-top: 4px;">No Displays Selected </div>
-    <div id="btnThreeDisplaysSelected" ng-click="openFull()" class="label label-tag" style="display:none;margin-top: 4px;" >3 Displays Selected </div>
+  <div class="content-box-editable clickable input-group" ng-if="!distributeToAll"> 
+    <div id="btnNoDisplaysSelected" ng-click="openEmpty()" class="label label-tag half-top">No Displays Selected </div>
+    <div id="btnThreeDisplaysSelected" ng-click="openFull()" class="label label-tag half-top" style="display:none;">3 Displays Selected </div>
     <span class="input-group-addon btn btn-primary" ng-click="openEmpty()">Select Display(s)</span>
   </div>
 </div>
