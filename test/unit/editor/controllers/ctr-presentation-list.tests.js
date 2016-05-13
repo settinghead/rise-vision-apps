@@ -40,6 +40,7 @@ describe('controller: Presentation List', function() {
 
     inject(function($injector,$rootScope, $controller){
       $scope = $rootScope.$new();
+      $scope.listLimit = 5;
       $loading = $injector.get('$loading');
       $loadingStartSpy = sinon.spy($loading, 'start');
       $loadingStopSpy = sinon.spy($loading, 'stop');
@@ -67,6 +68,7 @@ describe('controller: Presentation List', function() {
     expect($scope.search).to.be.ok;
     expect($scope.search).to.have.property('sortBy');
     expect($scope.search).to.have.property('reverse');
+    expect($scope.search.count).to.equal(5);
   });
   
   describe('$loading: ', function() {

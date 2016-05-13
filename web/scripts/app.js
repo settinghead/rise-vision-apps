@@ -60,7 +60,7 @@ angular.module('risevision.apps', [
 
       .state('apps.launcher', {
         abstract: true,
-        template: '<div class="website" ui-view></div>'
+        template: '<div class="app-launcher" ui-view></div>'
       })
 
       .state('apps.launcher.unauthorized', {
@@ -446,7 +446,8 @@ angular.module('risevision.apps', [
           $state.current.name === 'apps.editor.list' ||
           $state.current.name === 'apps.displays.list' ||
           $state.current.name === 'apps.displays.alerts' ||
-          $state.current.name === 'apps.storage.home') {
+          $state.current.name === 'apps.storage.home' ||
+          $state.current.name === 'apps.launcher.home') {
 
           $state.go($state.current, null, {
             reload: true

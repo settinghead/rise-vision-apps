@@ -7,7 +7,8 @@ angular.module('risevision.editor.controllers')
       $loading, $filter) {
       $scope.search = {
         sortBy: 'changeDate',
-        reverse: true
+        reverse: true,
+        count: $scope.listLimit
       };
 
       $scope.factory = new ScrollingListService(presentation.list,
