@@ -409,7 +409,7 @@ angular.module('risevision.apps', [
   .run(['$rootScope', '$state', '$modalStack',
     function ($rootScope, $state, $modalStack) {
 
-      $rootScope.$on('$stateChangeStart', function() {
+      $rootScope.$on('$stateChangeStart', function () {
         $modalStack.dismissAll();
       });
 
