@@ -5,9 +5,14 @@
     </button>
     <h3 id="storeModalTitle" class="modal-title">{{ 'editor-app.storeProduct.' + (factory.search.category === 'Content' ? 'content' : 'templates') + '.title' | translate }}</h3>
   </div>
-  <div class="modal-body padding-large" stop-event="touchend">
+
+  <div class="modal-body" ng-show="showDetailsPremium">
+    TEST
+  </div>
+
+  <div class="modal-body padding-large" stop-event="touchend" ng-hide="showDetailsPremium">
     
-    <search-filter filter-config="filterConfig" search="search" do-search="factory.doSearch"></search-filter>
+    <search-filter filter-config="filterConfig" search="search" do-search="factory.doSearch"></search-filter>  
 
     <div class="templates">
 
@@ -32,13 +37,10 @@
       </li>
 
       <li>
-        <div class="template-image">
-          <img src="" class="img-responsive clickable">
+        <div ng-click="showDetailsPremium = !showDetailsPremium" class="template-image clickable">
+          <img src="" class="img-responsive">
         </div><!--template-image-->
           <div class="template-info">
-            <!--<a href="#" class="btn btn-default btn-sm pull-right">
-              <i class="fa fa-info"></i>
-            </a>-->
             <a href="#" class="btn btn-primary btn-sm pull-right">
               <i class="fa fa-shopping-cart"></i>
             </a>
