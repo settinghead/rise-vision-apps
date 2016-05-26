@@ -1,19 +1,19 @@
 <!-- CUSTOM CSS
  -->
+<style>
+.clear-selection {
+  position: absolute;
+  top: 8px;
+  right: 13px;
+  z-index: 3;
+  cursor: pointer;
+  width: 17px;
+  text-align: center;
+  display: block;
+  height: 17px;
+}
 
- <style>
- .clear-selection {
-    position: absolute;
-    top: 8px;
-    right: 13px;
-    z-index: 3;
-    cursor: pointer;
-    width: 17px;
-    text-align: center;
-    display: block;
-    height: 17px;
- }
- </style>
+</style>
 
 
 
@@ -22,7 +22,7 @@
     <i class="fa fa-times half-top"></i>
   </button>
   <h2 class="modal-title ng-binding">
-    Google Spreadsheet Settings
+    Google Calendar Settings
     <a class="btn btn-link btn-xs" href="https://github.com/Rise-Vision/widget-google-spreadsheet/" target="_blank">
       <i class="fa fa-github fa-2x icon-gray"></i>
     </a>
@@ -31,34 +31,36 @@
 
 
 <div class="modal-body">
-  <h4>Spreadsheet</h4>  
+
+  <h4>Calendar</h4>  
   <!-- FILE SELECTOR -->
   <div class="form-group file-selector">
     <div class="row half-top half-bottom">
         <div class="col-md-12">
             <!-- Storage Single File - Button -->
             <button class="btn btn-default" ng-click="showFile=true" type="button">
-                Select Spreadsheet
-                <img style="height: 16px" src="https://s3.amazonaws.com/Rise-Images/Icons/drive.svg" class="icon-right">
+                Select Calendar
             </button>
             <span class="add-left add-right text-muted">or</span>
             <!-- URL -->
-            <button name="customBtn" type="button" class="btn btn-default" ng-click="showFile=false">Enter Spreadsheet Key
+            <button name="customBtn" type="button" class="btn btn-default" ng-click="showFile=false">Enter Calendar ID
             </button>
         </div>
     </div>
 
    <!--  FILE SELECTOR -->
-    <div class="form-group" ng-show="showFile === true" > 
+    <div class="form-group" ng-show="showFile === true"> 
         <div class="input-group custom-addon">
             <div style="position: relative">
-            <input name="storage-file-name" type="text" class="form-control" value="../RandomSpreadsheet.xls" readonly="">
-            <span class="clear-selection"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+
+              <span class="clear-selection"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+
+              <input name="storage-file-name" type="text" class="form-control" value="My Calendar" readonly="">
+            
             </div>
       <span class="input-group-addon">
-      <button name="previewBtn" class="btn btn-default" ng-click="">Preview File
-        <img src="http://s3.amazonaws.com/Rise-Images/Icons/newtab-icon.png" class="storage-selector-icon icon-right">
-      </button>
+        <button name="previewBtn" class="btn btn-default" ng-click="">Preview Calendar
+        </button>
     </span>
         </div>
     </div>
@@ -67,12 +69,13 @@
      <div class="form-group" ng-show="showFile === false">
       <div class="input-group custom-addon">
           <div style="position: relative">
-              <input name="storage-file-name" type="text" class="form-control" placeholder="Enter your Key">
               <span class="clear-selection"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+
+              <input name="storage-file-name" type="text" class="form-control" placeholder="Enter your Calendar ID">
+              
           </div>
           <span class="input-group-addon">
-        <button name="previewBtn" class="btn btn-default" ng-click="">Preview File
-          <img src="http://s3.amazonaws.com/Rise-Images/Icons/newtab-icon.png" class="storage-selector-icon icon-right">
+        <button name="previewBtn" class="btn btn-default" ng-click="">    Preview Calendar
         </button>
       </span>
       </div>
@@ -81,483 +84,250 @@
 <!-- END FILE SELECTOR -->
 
 
-  <div class="" ng-show="showFile === true">
-    <div class="content-box add-bottom" ng-hide="hideError === true">
+    <div class="content-box add-bottom">
       <div class="bg-danger add-padding">
-        <a href="#" class="btn btn-default pull-right" ng-click="hideError = true">Check Again</a>
-         To use this Google Spreadsheet it must be published to the web. To publish, open the Google Spreadsheet and select '<b>File &gt; Publish to the web</b>', then click '<b>Publish</b>'. 
+         To use this Google Calendar it must be publicly accessible. <a href="#">How to make your calendar public</a>. 
       </div>    
     </div>
-  </div>
 
 
 <!-- END GROUP -->
 
 
-
+<!-- END FILE SELECTOR  -->
   
+  <h4>Date Range</h4>
+  
+  <div class="date-range">
+    <label class="control-label">Show Events that Start</label>
+    <div class="form-group">
+      <select class="form-control">
+        <option>Today</option>
+      </select>
+    </div>
 
-  <!-- END FILE SELECTOR  -->
+    <label class="control-label">and for the following</label>
 
+    <div class="form-group">
+      <input class="form-control" type="text" value="5"></input>
+    </div>
 
-  <div class="form-group">
-    <label class="control-label">Select Worksheet</label>
-    <select class="form-control">
-      <option>Sheet 1</option>
-    </select>
-  </div>
+    <div class="form-group">
+      <select class="form-control">
+        <option>Day(s)</option>
+      </select>
+    </div>
+  </div><!-- DATE RANGE -->
 
   <div class="checkbox">
     <label class="control-label">
-      <input type="checkbox"><strong>Use First Row as Header</strong></input>
+      <input type="checkbox"><strong>Show Completed Events</strong></input>
     </label>
   </div>
 
-  
-  <div class="radio">
-     <label>
-      <input type="radio" ng-model="content" value="first" ng-value="first"> <strong>Show Entire Sheet</strong>
-    </label>
-  </div>
-  <div class="radio">
-    <label>
-      <input type="radio" ng-model="content" value="other"> <strong>Show Range</strong>
-    </label>
-  </div>
-  <div class="add-top">
-    <div class="form-group" ng-hide="content != 'other'">
-      <div class="row">
-        
-        <div class="col-sm-3">
-          <label class="control-label-secondary">Starting Cell (Top Left)</label>
-          <input type="text"  class="form-control">
-        </div>
-        
-        <div class="col-sm-3">
-          <label class="control-label-secondary">Ending Cell (Bottom Right)</label>
-          <input type="text"  class="form-control">
-        </div><!--col-->
-      </div><!--row-->
-    </div><!--form-group-->
-
-  </div><!--other-->
-  
-  <hr>
-    <div class="form-group">
-      <div class="row">
-        <div class="col-sm-3">
-          <label class="control-label">Data Refresh Interval</label>
-          <div class="input-group">
-            <input type="text" class="form-control">
-            <span class="input-group-addon">min</span>
-          </div>
-        </div>
-      </div><!--row-->
-    </div><!--form-group-->
   <hr>
 
   <h4>Scrolling</h4>
+
   <div class="row">
-    <div class="col-sm-2">
+    <div class="col-sm-3">
       <div class="form-group">
-        <label class="control-label">Transition</label>
-        <select class="form-control">
-          <option>None</option>
-          <option>Page</option>
-          <option selected="selected">Scroll</option>
-        </select>
-      </div><!--form-group-->
+    <label class="control-label">Transition</label>
+    <select class="form-control">
+      <option>None</option>
+      <option>Page</option>
+      <option selected="selected">Scroll</option>
+    </select>
+  </div><!--form-group-->
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+    <label class="control-label">Direction</label>
+    <select class="form-control">
+      <option>Up</option>
+    </select>
+  </div><!--form-group-->
+    </div>
+  </div><!--row-->
+
+  
+
+  
+  
+  <hr>
+  <h4>Data Selection</h4>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox">Show Calendar Title</input>
+        </label>
+      </div><!--checkbox-->
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox">Show Event Start Date</input>
+        </label>
+      </div><!--checkbox-->
     </div><!--col-->
-    <div class="col-sm-2">
-      <div class="form-group">
-        <label class="control-label">Direction</label>
-        <select class="form-control">
-          <option>Up</option>
-          <option>Left</option>
-        </select>
-      </div><!--form-group-->
+    <div class="col-sm-3">
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox">Show Event Name</input>
+        </label>
+      </div><!--checkbox-->
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox">Show Event End Date</input>
+        </label>
+      </div><!--checkbox-->
     </div><!--col-->
-    <div class="col-sm-2">
-      <div class="form-group">
-        <label class="control-label">Speed</label>
-        <select class="form-control">
-          <option>Medium</option>
-        </select>
-      </div><!--form-group-->
+    <div class="col-sm-3">
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox">Show Event Description</input>
+        </label>
+      </div><!--checkbox-->
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox">Show Event Start Time</input>
+        </label>
+      </div><!--checkbox-->
     </div><!--col-->
-    <div class="col-sm-2">
-      <div class="form-group">
-        <label class="control-label">Pause</label>
-        <div class="input-group">
-          <input class="form-control" type="text"></input>
-          <span class="input-group-addon">sec</span>
-        </div>
-      </div><!--form-group-->
-    </div><!--col-->
-    <div class="col-sm-2">
-      <div class="form-group">
-        <label class="control-label">PUD Failover</label>
-        <div class="input-group">
-          <input class="form-control" type="text"></input>
-          <span class="input-group-addon">sec</span>
-        </div>
-      </div><!--form-group-->
+    <div class="col-sm-3">
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox">Show Event Location</input>
+        </label>
+      </div><!--checkbox-->
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox">Show Event End Time</input>
+        </label>
+      </div><!--checkbox-->
     </div><!--col-->
   </div><!--row-->
 
+  <style type="text/css">
+  .font-settings-demo p {
+      display: inline-block;
+      padding: 0 6px;
+      margin-right: 10px;
+  }
+  </style>
+  
+  <hr>
+  <p><strong>Calendar Title Style</strong></p>
 
-    <!-- 
-    SPREADSHEET LAYOUT LAYOUT
-     -->
+  <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox" checked="checked">Custom Title</input>
+        </label>
+      </div><!--checkbox-->
 
-    <hr>
-    <h4>Format</h4>
-    <h5> Spreadsheet Format </h5>
-    <div class="section">
-        <div class="row">
-            <div class="col-sm-2">
-                <div class="form-group">
-                    <label for="column-header-text">
-                        Row Padding
-                    </label>
-                   <div class="input-group">
-                        <input id="" type="number" class="form-control">
-                        <span class="input-group-addon">px</span>
-                    </div>
-                </div>
-            </div>
-            <!-- width -->
-            <div class="col-sm-2">
-                <div class="form-group">
-                    <label for="column-width">
-                        Odd Row Color 
-                    </label>
-                  <div>
-                    <input color-picker="" id="alt-row-color" color="table.altRowColor" type="background" class="ng-isolate-scope" style="display: none;"><div class="sp-replacer background-color-picker sp-light"><div class="sp-preview"><div class="sp-preview-inner" style="background-color: rgba(0, 0, 0, 0);"></div></div><b class="caret"></b></div>
-                  </div>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="form-group">
-                    <label for="column-width">
-                        Even Row Color
-                    </label>
-                     <div>
-                    <input color-picker="" id="alt-row-color" color="table.altRowColor" type="background" class="ng-isolate-scope" style="display: none;"><div class="sp-replacer background-color-picker sp-light"><div class="sp-preview"><div class="sp-preview-inner" style="background-color: rgba(0, 0, 0, 0);"></div></div><b class="caret"></b></div>
-                  </div>
-                </div>
-            </div>
-            <div class="col-xs-12">
-                <hr>
-                <h5> Header Format </h5>
-                <style type="text/css">
-                .font-settings-demo p {
-                    display: inline-block;
-                    padding: 0 6px;
-                    margin-right: 10px;
-                }
-                </style>
-                <div class="font-settings-demo add-padding" style="background: #f2f2f2; border: 1px solid #bcbcbc;    margin-bottom: 12px;">
-                    <p style="width: 150px" class="remove-bottom">Verdana <i class="fa fa-caret-down"></i></p>
-                    <p style="width: 150px" class="remove-bottom">18px <i class="fa fa-caret-down"></i></p>
-                    <span class="text-muted">|</span>
-                    <p class="remove-bottom"><i class="fa fa-align-left"></i></p>
-                    <p class="remove-bottom"><i class="fa fa-align-center"></i></p>
-                    <p class="remove-bottom"><i class="fa fa-align-right"></i></p>
-                    <p class="remove-bottom"><i class="fa fa-align-justified"></i></p>
-                    <span class="text-muted">|</span>
-                    <p class="remove-bottom"><i class="fa fa-font"></i><i class="fa fa-caret-down"></i></p>
-                    <p class="remove-bottom"><i class="fa fa-font"></i><i class="fa fa-caret-down"></i></p>
-                    <span class="text-muted">|</span>
-                    <p class="remove-bottom"><i class="fa fa-bold"></i></p>
-                    <p class="remove-bottom"><i class="fa fa-italic"></i></p>
-                    <p class="remove-bottom"><i class="fa fa-underline"></i></p>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="font-picker-text form-group">
-                    <span style="font-family: Verdana; font-size: 20px; font-weight: normal; font-style: normal; text-decoration: none; color: black; background-color: transparent;">Column Header Sample Text</span>
-                </div>
-            </div>
-            <div class="col-xs-12">
-                <hr>
-                <h5> Body Format </h5>
-                <style type="text/css">
-                .font-settings-demo p {
-                    display: inline-block;
-                    padding: 0 6px;
-                    margin-right: 10px;
-                }
-                </style>
-                <div class="font-settings-demo add-padding" style="background: #f2f2f2; border: 1px solid #bcbcbc;    margin-bottom: 12px;">
-                    <p style="width: 150px" class="remove-bottom">Verdana <i class="fa fa-caret-down"></i></p>
-                    <p style="width: 150px" class="remove-bottom">18px <i class="fa fa-caret-down"></i></p>
-                    <span class="text-muted">|</span>
-                    <p class="remove-bottom"><i class="fa fa-align-left"></i></p>
-                    <p class="remove-bottom"><i class="fa fa-align-center"></i></p>
-                    <p class="remove-bottom"><i class="fa fa-align-right"></i></p>
-                    <p class="remove-bottom"><i class="fa fa-align-justified"></i></p>
-                    <span class="text-muted">|</span>
-                    <p class="remove-bottom"><i class="fa fa-font"></i><i class="fa fa-caret-down"></i></p>
-                    <p class="remove-bottom"><i class="fa fa-font"></i><i class="fa fa-caret-down"></i></p>
-                    <span class="text-muted">|</span>
-                    <p class="remove-bottom"><i class="fa fa-bold"></i></p>
-                    <p class="remove-bottom"><i class="fa fa-italic"></i></p>
-                    <p class="remove-bottom"><i class="fa fa-underline"></i></p>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="font-picker-text form-group">
-                    <span style="font-family: Verdana; font-size: 20px; font-weight: normal; font-style: normal; text-decoration: none; color: black; background-color: transparent;">Data Sample Text</span>
-                </div>
-            </div>
-        </div>
+    <div class="form-group add-bottom">
+      <input class="form-control" type="text" value="My Calendar"></input>
     </div>
 
-    <!-- 
-    COLUMN LAYOUT
-     -->
+  <ng-include src="'format-bar'" scope="" onload=""></ng-include>
+  <hr>
 
-    <hr>
-    <div class="section">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="columns" class="control-label ng-binding">Per Column Format 
-                    </label>
+  <p><strong>Event Name Style</strong></p>
+  <ng-include src="'format-bar'" scope="" onload=""></ng-include>
+  <hr>
 
-                    <select id="column-selector" class="form-control">
-                        <option value="" selected="selected" label="">Select A Column</option>
-                        <option value="" label="">Column A</option>
-                        <option value="" label="">Column B</option>
-                        <option value="" label="">Column C</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel-group" id="accordion" role="tablist">
-                    <!-- ngRepeat: column in columns -->
-                    <column-setting column="column">
-                        <div class="panel panel-default">
-                            <div class="collapse-panel panel-heading">
-                                <a role="button" data-toggle="collapse" data-parent="#" href="#" aria-expanded="false" aria-controls="collapseOne" class="collapsed"> <i class="fa fa-chevron-down"></i> Column A </a>
-                                <a href="" class="fa fa-minus-circle fa-lg remove-column-button"></a>
-                            </div>
-                        </div>
-                    </column-setting>
-                    <column-setting column="column">
-                        <div class="panel panel-default">
-                            <div class="collapse-panel panel-heading">
-                                <a role="button" data-toggle="collapse" data-parent="#" href="#" aria-expanded="false" aria-controls="collapseOne" class="collapsed"> <i class="fa fa-chevron-down"></i> Column B </a>
-                                <a href="" class="fa fa-minus-circle fa-lg remove-column-button"></a>
-                            </div>
-                        </div>
-                    </column-setting>
-                    <column-setting column="column">
-                        <div class="panel panel-default">
-                            <div class="collapse-panel panel-heading">
-                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed"> <i class="fa fa-chevron-down"></i> Key </a>
-                                <a href="" class="fa fa-minus-circle fa-lg remove-column-button"></a>
-                            </div>
-                            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="panel-body">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input name="layoutDefault" type="checkbox" ng-model="numeric" > Numeric data column
-                                        </label>
-                                         <span class="text-danger" style="float:right"> Note: Column formatting overrides Body Format options (above)</span>
-                                    </div>
-                                    <style type="text/css">
-                                    .font-settings-demo p {
-                                        display: inline-block;
-                                        padding: 0 6px;
-                                        margin-right: 10px;
-                                    }
-                                    </style>
-                                    <div class="font-settings-demo add-padding" style="background: #f2f2f2; border: 1px solid #bcbcbc;    margin-bottom: 12px;">
-                                        <p style="width: 150px" class="remove-bottom">Verdana <i class="fa fa-caret-down"></i></p>
-                                        <p style="width: 150px" class="remove-bottom">18px <i class="fa fa-caret-down"></i></p>
-                                        <span class="text-muted">|</span>
-                                        <p class="remove-bottom"><i class="fa fa-align-left"></i></p>
-                                        <p class="remove-bottom"><i class="fa fa-align-center"></i></p>
-                                        <p class="remove-bottom"><i class="fa fa-align-right"></i></p>
-                                        <p class="remove-bottom"><i class="fa fa-align-justified"></i></p>
-                                        <span class="text-muted">|</span>
-                                        <p class="remove-bottom"><i class="fa fa-font"></i><i class="fa fa-caret-down"></i></p>
-                                        <p class="remove-bottom"><i class="fa fa-font"></i><i class="fa fa-caret-down"></i></p>
-                                        <span class="text-muted">|</span>
-                                        <p class="remove-bottom"><i class="fa fa-bold"></i></p>
-                                        <p class="remove-bottom"><i class="fa fa-italic"></i></p>
-                                        <p class="remove-bottom"><i class="fa fa-underline"></i></p>
-                                    </div>
-                                    <!-- header -->
-                                    <div class="row">
-                                        <div class="col-sm-6 col-xs-12">
-                                            <div class="form-group">
-                                                <label for="column-header-text">
-                                                    Header Text
-                                                </label>
-                                                <input id="column-header-text" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <!-- width -->
-                                        <div class="col-sm-3 col-xs-12">
-                                            <div class="form-group">
-                                                <label for="column-width">
-                                                    Width
-                                                </label>
-                                                <div class="input-group">
-                                                    <input id="column-width" type="number" class="form-control">
-                                                    <span class="input-group-addon">px</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- align -->
-                                        <div class="col-sm-3 col-xs-12">
-                                            <div class="form-group">
-                                                <label>
-                                                    Alignment
-                                                </label>
-                                                <br>
-                                                <alignment align="column.align">
-                                                    <div class="btn-group alignment">
-                                                        <button type="button" class="btn btn-default btn-sm btn-alignment dropdown-toggle" data-toggle="dropdown" data-wysihtml5-command-value="left">
-                                                            <i class="fa fa-align-left"></i>
-                                                            <span class="caret"></span>
-                                                        </button>
-                                                        <div class="dropdown-menu" role="menu">
-                                                            <div class="btn-group">
-                                                                <button type="button" class="btn btn-default btn-sm" data-wysihtml5-command="alignment" data-wysihtml5-command-value="left" tabindex="-1">
-                                                                    <i class="fa fa-align-left"></i>
-                                                                </button>
-                                                                <button type="button" class="btn btn-default btn-sm" data-wysihtml5-command="alignment" data-wysihtml5-command-value="center" tabindex="-1">
-                                                                    <i class="fa fa-align-center"></i>
-                                                                </button>
-                                                                <button type="button" class="btn btn-default btn-sm" data-wysihtml5-command="alignment" data-wysihtml5-command-value="right" tabindex="-1">
-                                                                    <i class="fa fa-align-right"></i>
-                                                                </button>
-                                                                <button type="button" class="btn btn-default btn-sm" data-wysihtml5-command="alignment" data-wysihtml5-command-value="justify" tabindex="-1">
-                                                                    <i class="fa fa-align-justify"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </alignment>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--  end row -->
-                                    <!--  start row2 -->
-                                    <div class="row">
-                                        <div class="col-sm-4 col-xs-12">
-                                            <div class="form-group">
-                                                <label for="column-header-text">
-                                                    Decimals
-                                                </label>
-                                                <select class="form-control" ng-disabled="!numeric">
-                                                    <option value="" selected="selected" label="">0</option>
-                                                    <option value="" label="">- A</option>
-                                                    <option value="" label="">- B</option>
-                                                    <option value="" label="">- C</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!-- width -->
-                                        <div class="col-sm-4 col-xs-12">
-                                            <div class="form-group">
-                                                <label for="column-width">
-                                                    Sign
-                                                </label>
-                                                <select class="form-control" ng-disabled="!numeric">
-                                                    <option value="" selected="selected" label="">None</option>
-                                                    <option value="" label="">- A</option>
-                                                    <option value="" label="">- B</option>
-                                                    <option value="" label="">- C</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!-- align -->
-                                        <div class="col-sm-4 col-xs-12">
-                                            <div class="form-group">
-                                                <label>
-                                                    Color Conditions
-                                                </label>
-                                                <select class="form-control" ng-disabled="!numeric">
-                                                    <option value="" selected="selected" label="">None</option>
-                                                    <option value="" label="">- A</option>
-                                                    <option value="" label="">- B</option>
-                                                    <option value="" label="">- C</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--  end row -->
-                                      
-                                </div>
-                            </div>
-                        </div>
+  <p><strong>Event Description Style</strong></p>
+  <ng-include src="'format-bar'" scope="" onload=""></ng-include>
+  <hr>
 
-                    </column-setting>
-                    <!-- end ngRepeat: column in columns -->
-                </div>
-            </div>
+  <p><strong>Event Location Style</strong></p>
+  <ng-include src="'format-bar'" scope="" onload=""></ng-include>
+  <hr>
 
-        </div>
+  <p><strong>Event Start Date Style</strong></p>
+  <ng-include src="'format-bar'" scope="" onload=""></ng-include>
+  <br>
+  <p><strong>Event End Date Style</strong></p>
+  <ng-include src="'format-bar'" scope="" onload=""></ng-include>
+  <br>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+    <label class="control-label">Format</label>
+    <select class="form-control">
+      <option>May 26, 2016</option>
+    </select>
+  </div><!--form-group-->
     </div>
-    <!-- 
-    END COLUMN LAYOUT
-     -->
+  </div><!--row-->
 
-    <!-- 
-    START CUSTOM LAYOUT
-     -->
-     <hr>
-    <h5>Custom Layout <a href="https://github.com/Rise-Vision/widget-google-spreadsheet/blob/master/examples/list.md" target="_blank" class="add-left text-small"><span class="fa fa-question-circle fa-lg icon-left"></span> <span>Example</span></a>
-    
-    </h5>
- 
-    
-  <!-- FILE SELECTOR -->
-<div class="form-group file-selector">
-  <div class="row half-top half-bottom">
-    <div class="col-md-12">
-            <!-- Storage Single File - Button -->
-            <button class="btn btn-default" ng-click="showHTML=true" type="button">
-                Select HTML File
-                <img src="http://s3.amazonaws.com/Rise-Images/Icons/storage.png" class="storage-selector-icon icon-right">
-            </button>
-            <!-- URL -->
-            <button name="customBtn" type="button" class="btn btn-default" ng-click="showHTML=false">Custom URL
-                <i class="fa fa-link fa-large"></i>
-            </button>
-        </div>
+  <hr>
+
+  <p><strong>Event Start Time Style</strong></p>
+  <ng-include src="'format-bar'" scope="" onload=""></ng-include>
+  <br>
+  <p><strong>Event End Time Style</strong></p>
+  <ng-include src="'format-bar'" scope="" onload=""></ng-include>
+  <br>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+    <label class="control-label">Format</label>
+    <select class="form-control">
+      <option>12-Hour</option>
+    </select>
+  </div><!--form-group-->
     </div>
+  </div><!--row-->
 
-   <!--  FILE SELECTOR -->
-    <div class="form-group" ng-show="showHTML === true" > 
-      <div style="position: relative">
-        <span class="clear-selection"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
-        <input name="storage-file-name" type="text" class="form-control" value="../RandomSpreadsheet.xls" readonly="">
+  <hr>
+
+  <h4>Separator</h4>
+
+  <div class="checkbox">
+    <label class="control-label">
+      <input type="checkbox"><strong>Show Separator Between Stories</strong></input>
+    </label>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="input-group">
+        <input type="text" class="form-control"></input>
+        <span class="input-group-addon">px</span>
       </div>
     </div>
-
-     <!--  URL SELECTOR -->
-    <div class="form-group" ng-show="showHTML === false">
-      <div style="position: relative">
-        <span class="clear-selection"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
-        <input name="storage-file-name" type="text" class="form-control" placeholder="http://"> 
-      </div>       
+    <div class="col-sm-3">
+      <div class="input-group">
+        <input type="text" class="form-control"></input>
+        <span class="input-group-addon color-wheel"></span>
+      </div>
     </div>
-</div>
-<!-- END FILE SELECTOR -->
+  </div>
 
-    <!-- 
-    END CUSTOM LAYOUT
-     -->
+  
+  <script type="text/ng-template" id="format-bar">
 
-
+  <div class="font-settings-demo add-padding" style="background: #f2f2f2; border: 1px solid #bcbcbc;    margin-bottom: 12px;">
+      <p style="width: 150px" class="remove-bottom">Verdana <i class="fa fa-caret-down"></i></p>
+      <p style="width: 150px" class="remove-bottom">18px <i class="fa fa-caret-down"></i></p>
+      <span class="text-muted">|</span>
+      <p class="remove-bottom"><i class="fa fa-align-left"></i></p>
+      <p class="remove-bottom"><i class="fa fa-align-center"></i></p>
+      <p class="remove-bottom"><i class="fa fa-align-right"></i></p>
+      <p class="remove-bottom"><i class="fa fa-align-justified"></i></p>
+      <span class="text-muted">|</span>
+      <p class="remove-bottom"><i class="fa fa-font"></i><i class="fa fa-caret-down"></i></p>
+      <p class="remove-bottom"><i class="fa fa-font"></i><i class="fa fa-caret-down"></i></p>
+      <span class="text-muted">|</span>
+      <p class="remove-bottom"><i class="fa fa-bold"></i></p>
+      <p class="remove-bottom"><i class="fa fa-italic"></i></p>
+      <p class="remove-bottom"><i class="fa fa-underline"></i></p>
+  </div>
+  <div style="background: #f2f2f2; padding: 10px">
+    Lorem Ipsum
+  </div>
+  </script>
 
 </div>
 <!--END modal-body-->
