@@ -1,0 +1,53 @@
+<!-- CUSTOM CSS
+ -->
+<div class="modal-header">
+  <button type="button" class="close" ng-click="closeSettings()">
+    <i class="fa fa-times half-top"></i>
+  </button>
+  <h2 class="modal-title ng-binding">
+    HTML Settings
+    <a class="btn btn-link btn-xs" href="https://github.com/Rise-Vision/widget-google-spreadsheet/" target="_blank">
+      <i class="fa fa-github fa-2x icon-gray"></i>
+    </a>
+  </h2>
+</div>
+
+
+<div class="modal-body">
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label class="control-label">Refresh Interval</label>
+        <select class="form-control">
+        <option>Never Refresh</option>
+        <option selected="selected">1 min</option>
+        <option>5 min</option>
+        <option>30 min</option>
+        <option>60 min</option>
+        </select>
+      </div><!--form-group-->
+    </div>
+  </div><!--row-->
+
+
+  <div class="checkbox">
+    <label class="control-label">
+      <input type="checkbox" checked="checked"><strong>Allow Interaction</strong></input>
+    </label>
+  </div><!--checkbox-->
+
+  <div class="checkbox">
+    <label class="control-label">
+      <input type="checkbox" checked="checked"><strong>Unload HTML when not visible in Presentation</strong> (recommended)</input>
+    </label>
+  </div><!--checkbox-->
+
+  <img src="https://s3.amazonaws.com/Rise-Images/Experimental/web.png" class="img-responsive">
+
+</div>
+<!--END modal-body-->
+<div class="modal-footer">
+    <button class="btn btn-default">Cancel <i class="fa fa-times icon-right"></i></button>
+    <button class="btn btn-primary">Save <i class="fa fa-check icon-right"></i></button>
+</div>

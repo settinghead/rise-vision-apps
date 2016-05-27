@@ -1,0 +1,337 @@
+<!-- CUSTOM CSS
+ -->
+<style>
+.clear-selection {
+  position: absolute;
+  top: 8px;
+  right: 13px;
+  z-index: 3;
+  cursor: pointer;
+  width: 17px;
+  text-align: center;
+  display: block;
+  height: 17px;
+}
+
+  .font-settings-demo p {
+      display: inline-block;
+      padding: 0 6px;
+      margin-right: 10px;
+  }
+
+</style>
+
+
+
+<div class="modal-header">
+  <button type="button" class="close" ng-click="closeSettings()">
+    <i class="fa fa-times half-top"></i>
+  </button>
+  <h2 class="modal-title ng-binding">
+    Google Calendar Settings
+    <a class="btn btn-link btn-xs" href="https://github.com/Rise-Vision/widget-google-spreadsheet/" target="_blank">
+      <i class="fa fa-github fa-2x icon-gray"></i>
+    </a>
+  </h2>
+</div>
+
+
+<div class="modal-body">
+
+  <h4>Calendar</h4>  
+  <!-- FILE SELECTOR -->
+  <div class="form-group file-selector">
+    <div class="row half-top half-bottom">
+        <div class="col-md-12">
+            <!-- Storage Single File - Button -->
+            <button class="btn btn-default" ng-click="showFile=true" type="button">
+                Select Calendar <span class="img-icon img-icon-google-calendar"></span>
+            </button>
+            <span class="add-left add-right text-muted">or</span>
+            <!-- URL -->
+            <button name="customBtn" type="button" class="btn btn-default" ng-click="showFile=false">Enter Calendar ID
+            </button>
+        </div>
+    </div>
+
+   <!--  FILE SELECTOR -->
+    <div class="form-group" ng-show="showFile === true"> 
+        <div class="input-group custom-addon">
+            <div style="position: relative">
+
+              <span class="clear-selection"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+
+              <input name="storage-file-name" type="text" class="form-control" value="My Calendar" readonly="">
+            
+            </div>
+      <span class="input-group-addon">
+        <button name="previewBtn" class="btn btn-default" ng-click="">Open Calendar <i class="fa fa-external-link icon-right" aria-hidden="true"></i>
+        </button>
+    </span>
+        </div>
+    </div>
+
+     <!--  URL SELECTOR -->
+     <div class="form-group" ng-show="showFile === false">
+      <div class="input-group custom-addon">
+          <div style="position: relative">
+              <span class="clear-selection"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+
+              <input name="storage-file-name" type="text" class="form-control" placeholder="Enter your Calendar ID">
+              
+          </div>
+          <span class="input-group-addon">
+        <button name="previewBtn" class="btn btn-default" ng-click="">    Open Calendar <i class="fa fa-external-link icon-right" aria-hidden="true"></i>
+        </button>
+      </span>
+      </div>
+  </div>
+</div>
+<!-- END FILE SELECTOR -->
+
+
+    <div class="content-box add-bottom">
+      <div class="bg-danger add-padding">
+         To use this Google Calendar it must be publicly accessible. <a href="#">How to make your calendar public</a>. 
+      </div>    
+    </div>
+
+
+<!-- END GROUP -->
+
+
+<!-- END FILE SELECTOR  -->
+  
+  <h4>Date Range</h4>
+  
+  <div class="date-range">
+    <label class="control-label">Show Events that Start</label>
+    <div class="form-group">
+      <select class="form-control">
+        <option>Today</option>
+      </select>
+    </div>
+
+    <label class="control-label">and for the following</label>
+
+    <div class="form-group">
+      <input class="form-control" type="text" value="5"></input>
+    </div>
+
+    <div class="form-group">
+      <select class="form-control">
+        <option>Day(s)</option>
+      </select>
+    </div>
+  </div><!-- DATE RANGE -->
+
+  <div class="checkbox">
+    <label class="control-label">
+      <input type="checkbox"><strong>Show Completed Events</strong></input>
+    </label>
+  </div>
+
+  <hr>
+
+  <h4>Scrolling</h4>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+    <label class="control-label">Transition</label>
+    <select class="form-control">
+      <option>None</option>
+      <option>Page</option>
+      <option selected="selected">Scroll</option>
+    </select>
+  </div><!--form-group-->
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+    <label class="control-label">Direction</label>
+    <select class="form-control">
+      <option>Up</option>
+    </select>
+  </div><!--form-group-->
+    </div>
+  </div><!--row-->
+
+  
+
+  
+  
+  <hr>
+  <h4>Data Selection</h4>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox" checked="checked">Show Calendar Title</input>
+        </label>
+      </div><!--checkbox-->
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox" checked="checked">Show Event Start Date</input>
+        </label>
+      </div><!--checkbox-->
+    </div><!--col-->
+    <div class="col-sm-3">
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox" checked="checked">Show Event Name</input>
+        </label>
+      </div><!--checkbox-->
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox" checked="checked">Show Event End Date</input>
+        </label>
+      </div><!--checkbox-->
+    </div><!--col-->
+    <div class="col-sm-3">
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox" checked="checked">Show Event Description</input>
+        </label>
+      </div><!--checkbox-->
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox" checked="checked">Show Event Start Time</input>
+        </label>
+      </div><!--checkbox-->
+    </div><!--col-->
+    <div class="col-sm-3">
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox" checked="checked">Show Event Location</input>
+        </label>
+      </div><!--checkbox-->
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox" checked="checked">Show Event End Time</input>
+        </label>
+      </div><!--checkbox-->
+    </div><!--col-->
+  </div><!--row-->
+
+
+  
+  <hr>
+  <p><strong>Calendar Title Style</strong></p>
+
+  <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox" checked="checked">Custom Title</input>
+        </label>
+      </div><!--checkbox-->
+
+    <div class="form-group add-bottom">
+      <input class="form-control" type="text" value="My Calendar"></input>
+    </div>
+
+  <ng-include src="'format-bar'" scope="" onload=""></ng-include>
+  <hr>
+
+  <p><strong>Event Name Style</strong></p>
+  <ng-include src="'format-bar'" scope="" onload=""></ng-include>
+  <hr>
+
+  <p><strong>Event Description Style</strong></p>
+  <ng-include src="'format-bar'" scope="" onload=""></ng-include>
+  <hr>
+
+  <p><strong>Event Location Style</strong></p>
+  <ng-include src="'format-bar'" scope="" onload=""></ng-include>
+  <hr>
+
+  <p><strong>Event Start Date Style</strong></p>
+  <ng-include src="'format-bar'" scope="" onload=""></ng-include>
+  <br>
+  <p><strong>Event End Date Style</strong></p>
+  <ng-include src="'format-bar'" scope="" onload=""></ng-include>
+  <br>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+    <label class="control-label">Format</label>
+    <select class="form-control">
+      <option>May 26, 2016</option>
+    </select>
+  </div><!--form-group-->
+    </div>
+  </div><!--row-->
+
+  <hr>
+
+  <p><strong>Event Start Time Style</strong></p>
+  <ng-include src="'format-bar'" scope="" onload=""></ng-include>
+  <br>
+  <p><strong>Event End Time Style</strong></p>
+  <ng-include src="'format-bar'" scope="" onload=""></ng-include>
+  <br>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+    <label class="control-label">Format</label>
+    <select class="form-control">
+      <option>12-Hour</option>
+    </select>
+  </div><!--form-group-->
+    </div>
+  </div><!--row-->
+
+  <hr>
+
+  <h4>Separator</h4>
+
+  <div class="checkbox">
+    <label class="control-label">
+      <input type="checkbox"><strong>Show Separator Between Events</strong></input>
+    </label>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="input-group">
+        <input type="text" class="form-control"></input>
+        <span class="input-group-addon">px</span>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="input-group">
+        <input type="text" class="form-control"></input>
+        <span class="input-group-addon color-wheel"></span>
+      </div>
+    </div>
+  </div>
+
+  
+  <script type="text/ng-template" id="format-bar">
+
+  <div class="font-settings-demo add-padding" style="background: #f2f2f2; border: 1px solid #bcbcbc;    margin-bottom: 12px;">
+      <p style="width: 150px" class="remove-bottom">Verdana <i class="fa fa-caret-down"></i></p>
+      <p style="width: 150px" class="remove-bottom">18px <i class="fa fa-caret-down"></i></p>
+      <span class="text-muted">|</span>
+      <p class="remove-bottom"><i class="fa fa-align-left"></i></p>
+      <p class="remove-bottom"><i class="fa fa-align-center"></i></p>
+      <p class="remove-bottom"><i class="fa fa-align-right"></i></p>
+      <p class="remove-bottom"><i class="fa fa-align-justified"></i></p>
+      <span class="text-muted">|</span>
+      <p class="remove-bottom"><i class="fa fa-font"></i><i class="fa fa-caret-down"></i></p>
+      <p class="remove-bottom"><i class="fa fa-font"></i><i class="fa fa-caret-down"></i></p>
+      <span class="text-muted">|</span>
+      <p class="remove-bottom"><i class="fa fa-bold"></i></p>
+      <p class="remove-bottom"><i class="fa fa-italic"></i></p>
+      <p class="remove-bottom"><i class="fa fa-underline"></i></p>
+  </div>
+  <div style="background: #f2f2f2; padding: 10px">
+    Lorem Ipsum
+  </div>
+  </script>
+
+</div>
+<!--END modal-body-->
+<div class="modal-footer">
+    <button class="btn btn-default">Cancel <i class="fa fa-times icon-right"></i></button>
+    <button class="btn btn-primary">Save <i class="fa fa-check icon-right"></i></button>
+</div>
