@@ -59,6 +59,14 @@ angular.module('risevision.editor.controllers')
         $scope.dismiss();
       };
 
+      var saveSettings = function (data) {
+        $modalInstance.close(data);
+      };
+
+      var closeSettings = function () {
+        $modalInstance.dismiss('cancel');
+      };
+
       $scope.dismiss = function () {
         $modalInstance.dismiss();
       };
