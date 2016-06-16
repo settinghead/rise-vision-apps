@@ -34,7 +34,7 @@ angular.module('risevision.editor.controllers')
         if (gadgetsApi) {
           $timeout(function () {
             gadgetsApi.rpc.register('rscmd_saveSettings',
-              saveSettings);
+              $scope.save);
             gadgetsApi.rpc.register('rscmd_closeSettings',
               closeSettings);
             gadgetsApi.rpc.register('rscmd_getAdditionalParams',
@@ -49,18 +49,18 @@ angular.module('risevision.editor.controllers')
         return widget.additionalParams;
       };
 
-      $scope.save = function () {
+      $scope.save = function (data) {
         angular.copy($scope.item, item);
 
         placeholderPlaylistFactory.updateItem(item);
 
         placeholderFactory.updateSubscriptionStatus();
 
-        $scope.dismiss();
+        $modalInstance.close(data);
+
       };
 
       var saveSettings = function (data) {
-        $modalInstance.close(data);
       };
 
       var closeSettings = function () {

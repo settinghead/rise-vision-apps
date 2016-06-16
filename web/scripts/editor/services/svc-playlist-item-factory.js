@@ -119,10 +119,25 @@ angular.module('risevision.editor.services')
         return $sce.trustAsResourceUrl(url);
       };
 
+      var _updateItemObjectData = function (item, params) {
+        if (params && item.objectData) {
+          if (_getWidgetHtmlUrl(params)) {
+            item.objectData = params;
+            return;
+          }
+
+          item.objectData = item.objectData.split(/[?#]/)[0];
+          if (params.charAt(0) === '&') {
+            params = params.replace('&', '?');
+          }
+          if (params.charAt(0) !== '?') {
+            params = '?' + params;
+          }
+          item.objectData += params;
+        }
+      };
 
       factory.edit = function (item, showWidgetModal) {
-
-
 
         var modalInstance = $modal.open({
           templateUrl: 'partials/editor/playlist-item-modal.html',
@@ -161,6 +176,16 @@ angular.module('risevision.editor.services')
               return deferred.promise;
             }
           }
+        });
+
+        modalInstance.result.then(function (widgetData) {
+          if (widgetData) {
+            _updateItemObjectData(item, widgetData.params);
+            item.additionalParams = widgetData.additionalParams;
+          }
+        }, function () {
+          // for unit test purposes
+          factory.canceled = true;
         });
       };
 
