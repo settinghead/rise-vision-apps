@@ -77,6 +77,7 @@
     </ul>
 
     <div class="add-top text-right">
+      <p class="text-muted remove-bottom pull-left">Tip: You can drag and drop files here to upload them.</p>
       <button class="btn btn-primary">Save <i class="fa fa-check icon-right"></i></button>
       <button class="btn btn-default" ng-click="dismiss()">
         {{'common.cancel' | translate}} <i class="fa fa-white fa-times icon-right"></i>
@@ -84,22 +85,24 @@
     </div>
   </div>
   
-  <div class="content-box add-top add-padding" ng-hide="selected">
-    <label class="control-label">URL</label>
-    <div class="input-group">
-      
-      <input type="text" name="" class="form-control">
-      <span class="input-group-addon clickable">
-        Go
-      </span>
-    </div>
+  <div ng-hide="selected">
+    <label class="control-label">URL</label>
+    <div class="input-group">
+      
+      <input type="text" name="" class="form-control">
+      <span class="input-group-addon clickable">
+        Add
+      </span>
+    </div>
 
-    <div class="content-box add-padding add-top">
-      <h3>Get Storage, It Rocks!</h3>
-      <button class="btn btn-primary">Buy Now</button>
-    </div>
+    <div class="content-box add-padding add-top">
+      <h3 class="remove-top">Try Storage</h3>
+      <p>Add multiple images, create slideshows, and get automatic video encoding.</p>
+      <p>Free 30 days trial. No credit card required.
+$10 per Company per Month.</p>
+      <button class="btn btn-primary">Start Your Free Trial</button>
+    </div>
 
-
-  </div>
+  </div>
 
 </div><!--file-selector-->
