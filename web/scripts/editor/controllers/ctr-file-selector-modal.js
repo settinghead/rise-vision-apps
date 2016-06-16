@@ -7,5 +7,10 @@ angular.module('risevision.editor.controllers')
         $modalInstance.dismiss();
       };
 
+      $scope.$on("filesPicked", function (event,files) {
+        console.log(files);
+        $scope.dismiss();
+      })
+
     }
   ]); //ctr
