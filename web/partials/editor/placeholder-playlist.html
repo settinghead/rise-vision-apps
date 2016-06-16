@@ -15,6 +15,10 @@
 .playlist-item-thumbnail img {
   width: 100%;
 }
+
+.editor-playlist .editor-playlist-item .playlist-item-name span {
+  max-width: 100px;
+}
 </style>
 
 <!-- <div> Add </div> -->
@@ -76,7 +80,7 @@
           <p class="playlist-item-name"><span>{{item.name}}</span></p>
           
           <p class="text-small text-muted remove-bottom">
-            <span class="playlist-item-status">10 sec</span>
+            <span class="playlist-item-status">{{item.duration}} sec</span>
           </p>
         </a>
       </div>
