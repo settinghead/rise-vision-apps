@@ -10,6 +10,16 @@ angular.module('risevision.editor.directives')
         scope: true,
         templateUrl: 'partials/editor/placeholder-playlist.html',
         link: function ($scope) {
+
+          var _newPlaylistItem = function () {
+            return {
+              duration: 10,
+              distributeToAll: true,
+              timeDefined: false,
+              additionalParams: null
+            };
+          };
+
           $scope.factory = placeholderPlaylistFactory;
           $scope.widgetModalFactory = widgetModalFactory;
           $scope.playlistItemFactory = playlistItemFactory;
@@ -54,6 +64,15 @@ angular.module('risevision.editor.directives')
               factory.newCopyOf(templateId);
             });            }
 
+          $scope.addTextShortcut = function() {
+            var item = _newPlaylistItem();
+            item.type = 'widget';
+            item.name = 'Widget from URL';
+            item.objectReference = "64cc543c-c2c6-49ab-a4e9-40ceba48a253";
+            item.objectData = "http://s3.amazonaws.com/widget-text/1.0.0/dist/widget.html";
+            item.settingsUrl = "https://s3.amazonaws.com/widget-text/1.0.0/dist/settings.html";
+            playlistItemFactory.edit(item, true);
+          }
 
         }
       };
