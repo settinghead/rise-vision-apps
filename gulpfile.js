@@ -120,7 +120,7 @@ gulp.task('bower-clean-install', ['bower-rm', 'bower-install']);
 gulp.task('watch', function () {
   gulp.watch(partialsHTMLFiles, ['html2js']);
   gulp.watch(['./tmp/partials.js', './web/scripts/**/*.js', './web/bower_components/rv-common-style/**/*', './web/index.html'], ['browser-sync-reload']);
-  gulp.watch(unitTestFiles, ['test:unit']);
+  // gulp.watch(unitTestFiles, ['test:unit']);
 });
 
 

@@ -49,38 +49,6 @@ angular.module('risevision.editor.controllers')
         $scope.hasUnsavedChanges = false;
       });
 
-      var _bypass = false;
-      $scope.$on('$stateChangeStart', function (event, toState, toParams) {
-        if (_bypass) {
-          _bypass = false;
-          return;
-        }
-        if ($scope.hasUnsavedChanges && (toState.name !==
-            'apps.editor.workspace.artboard' && toState.name !==
-            'apps.editor.workspace.htmleditor')) {
-          event.preventDefault();
-          var modalInstance = $modal.open({
-            templateUrl: 'partials/editor/unsaved-changes-modal.html',
-            size: 'md',
-            controller: 'UnsavedChangesModalController'
-          });
-          modalInstance.result.then(function () {
-            _bypass = true;
-            $state.go(toState, toParams);
-          });
-        }
-      });
-
-      $window.onbeforeunload = function () {
-        if ($scope.hasUnsavedChanges) {
-          return $filter('translate')('common.saveBeforeLeave');
-        }
-      };
-
-      $scope.$on('$destroy', function () {
-        $window.onbeforeunload = undefined;
-      });
-
       $scope.changeTemplate = function () {
         $scope.hasUnsavedChanges = false;
         $state.go('apps.editor.add');

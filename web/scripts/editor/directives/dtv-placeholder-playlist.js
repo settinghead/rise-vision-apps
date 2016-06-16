@@ -40,6 +40,21 @@ angular.module('risevision.editor.directives')
             });
           };
 
+          $scope.addItemShortcut = function(type) {
+            var modalInstance = $modal.open({
+              templateUrl: 'partials/editor/file-selector-modal.html',
+              size: 'md',
+              controller: 'FileSelectorModal'
+            });
+
+            modalInstance.result.then(function (templateId) {
+              if (!templateId) {
+                return;
+              }
+              factory.newCopyOf(templateId);
+            });            }
+
+
         }
       };
     }
