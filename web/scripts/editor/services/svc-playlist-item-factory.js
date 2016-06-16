@@ -3,9 +3,9 @@
 angular.module('risevision.editor.services')
   .factory('playlistItemFactory', ['$rootScope', '$modal', 
     'placeholderPlaylistFactory', 'gadgetFactory',
-    'presentationTracker', 'editorFactory',
+    'presentationTracker', 'editorFactory', '$q', 'WIDGET_PARAMS', 'userState', 'placeholderFactory', '$location','$sce',
     function ($rootScope, $modal, placeholderPlaylistFactory, gadgetFactory, 
-      presentationTracker, editorFactory) {
+      presentationTracker, editorFactory,$q, WIDGET_PARAMS,userState,placeholderFactory,$location,$sce) {
       var factory = {};
 
       var _newPlaylistItem = function () {
@@ -82,7 +82,46 @@ angular.module('risevision.editor.services')
         modalInstance.result.then(_addProduct);
       };
 
+      var _getUrlParams = function (widgetUrl) {
+        var res = '';
+        var queryParamsStartPos = widgetUrl.indexOf('?');
+        if (queryParamsStartPos === -1) {
+          queryParamsStartPos = widgetUrl.indexOf('&');
+        }
+
+        if (queryParamsStartPos > 0) {
+          res = widgetUrl.substring(queryParamsStartPos);
+        }
+
+        return res;
+      };
+
+      var _getSettingsUrl = function (widgetUrl, url) {
+        var params = _getUrlParams(widgetUrl);
+        var rpcParams = WIDGET_PARAMS
+          .replace('cid', userState.getSelectedCompanyId())
+          .replace('width', placeholderFactory.placeholder.width)
+          .replace('height', placeholderFactory.placeholder.height)
+          .replace('iframeId', 'widget-modal-frame')
+          .replace('parentUrl', encodeURIComponent($location.$$absUrl));
+
+        url = url
+          .replace('http://', '//')
+          .replace('https://', '//');
+
+        url += params;
+        url += url.indexOf('?') !== -1 || url.indexOf('&') !== -1 ?
+          '&' : '?';
+        url += rpcParams;
+
+        return $sce.trustAsResourceUrl(url);
+      };
+
+
       factory.edit = function (item, showWidgetModal) {
+
+
+
         var modalInstance = $modal.open({
           templateUrl: 'partials/editor/playlist-item-modal.html',
           size: 'md',
@@ -93,6 +132,31 @@ angular.module('risevision.editor.services')
             },
             showWidgetModal: function () {
               return showWidgetModal;
+            },
+            widget: function () {
+              var deferred = $q.defer();
+
+              if (item.settingsUrl) {
+                deferred.resolve({
+                  url: _getSettingsUrl(item.objectData,
+                    item.settingsUrl),
+                  additionalParams: item.additionalParams
+                });
+              } else {
+                gadgetFactory.getGadget(item.objectReference)
+                  .then(function (gadget) {
+                    if (!item.objectData) {
+                      item.objectData = gadget.url;
+                    }
+
+                    deferred.resolve({
+                      url: _getSettingsUrl(item.objectData,
+                        gadget.uiUrl),
+                      additionalParams: item.additionalParams
+                    });
+                  });
+              }
+              return deferred.promise;
             }
           }
         });

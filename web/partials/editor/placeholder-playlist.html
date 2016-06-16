@@ -76,7 +76,7 @@
       </div>
 
       <div class="nameContainer" ng-show="item.type === 'widget' && (item.objectReference || item.settingsUrl)">
-        <a href="#" ng-click="widgetModalFactory.showWidgetModal(item)">
+        <a href="#" ng-click="playlistItemFactory.edit(item,false)">
           <p class="playlist-item-name"><span>{{item.name}}</span></p>
           
           <p class="text-small text-muted remove-bottom">
