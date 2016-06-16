@@ -56,13 +56,13 @@
     </button>
   </div>
   
-  <search-filter filter-config="filterConfig" search="search" do-search="search.doSearch"></search-filter>
-
   <form id="uploadform">
     <input type="file" id="upload-files" file-select multiple style="visibility: hidden;">
   </form>
   
   <div ng-show="selected">
+    <search-filter filter-config="filterConfig" search="search" do-search="search.doSearch"></search-filter>
+
     <ul class="list-unstyled pt-media-list">
       <label for="upload-files">
         <li class="btn-upload">
