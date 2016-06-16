@@ -35,22 +35,24 @@ angular.module('risevision.editor.services')
           });
       };
       
-      $rootScope.$on("filesPicked", function (event, files) {
-        console.log(files);
-        
-        // for (var i; i < files.length; i++) {
-        //   files[i]
-        
+      var _addImage = function(file) {
         var item = _newPlaylistItem();
         item.type = 'widget';
-        item.name = 'flowers_001.jpg';
+        item.name = file.name;
         item.objectData = 'http://s3.amazonaws.com/widget-image/0.1.1/dist/widget.html';
-        item.additionalParams = "{\"selector\":{\"selection\":\"single-file\",\"storageName\":\"flowers_001.jpg\",\"url\":\"https://storage.googleapis.com/risemedialibrary-f114ad26-949d-44b4-87e9-8528afc76ce4/flowers_001.jpg\"},\"storage\":{\"companyId\":\"f114ad26-949d-44b4-87e9-8528afc76ce4\",\"fileName\":\"flowers_001.jpg\",\"folder\":\"\"},\"resume\":true,\"scaleToFit\":true,\"position\":\"middle-center\",\"duration\":10,\"pause\":10,\"autoHide\":false,\"url\":\"\",\"background\":{}}";
+        item.additionalParams = "{\"selector\":{\"selection\":\"single-file\",\"storageName\":\"" + file.name + "\",\"url\":\"https://storage.googleapis.com/risemedialibrary-f114ad26-949d-44b4-87e9-8528afc76ce4/" + file.name + "\"},\"storage\":{\"companyId\":\"f114ad26-949d-44b4-87e9-8528afc76ce4\",\"fileName\":\"" + file.name + "\",\"folder\":\"\"},\"resume\":true,\"scaleToFit\":true,\"position\":\"middle-center\",\"duration\":10,\"pause\":10,\"autoHide\":false,\"url\":\"\",\"background\":{}}";
         item.settingsUrl = '//s3.amazonaws.com/widget-image/0.1.1/dist/settings.html';
         item.objectReference = '5233a598-35ce-41a4-805c-fd2147f144a3';
 
         placeholderPlaylistFactory.updateItem(item);
-        // }
+      }
+
+      $rootScope.$on("filesPicked", function (event, files) {
+        console.log(files);
+        
+        for (var i = 0; i < files.length; i++) {
+          _addImage(files[i]);
+        }
       })
 
 
