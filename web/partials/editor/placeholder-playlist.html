@@ -1,3 +1,22 @@
+<style>
+.editor-playlist-item {
+  box-shadow:0 2px 2px rgba(40,40,40,0.1);
+}
+
+.playlist-item-thumbnail {
+  overflow: hidden;
+  height: 44px;
+  width: 44px;
+  border: 1px solid #bcbcbc;
+  border-radius: 4px;
+  float: left;
+  margin-right: 10px;
+}
+.playlist-item-thumbnail img {
+  width: 100%;
+}
+</style>
+
 <!-- <div> Add </div> -->
 <div class="btn-group btn-group-justified">
   <a href="#" class="btn btn-default" ng-click="addItemShortcut('image')"><image src="https://s3.amazonaws.com/ux-design/sprint_prototype/noun_18307_cc.svg"></image>
@@ -34,7 +53,7 @@
 </div>
 
 <div class="editor-playlist scrollable-list add-top">
-  <div class="editor-playlist-item" ng-repeat="item in factory.getItems() track by $index">
+  <div class="editor-playlist-item    clickable" ng-repeat="item in factory.getItems() track by $index">
 
     <div class="arrows">
       <button class="btn btn-block btn-xs btn-default" id="moveUpButton" ng-click="factory.movePlaylistItemUp(item)" ng-disabled="!factory.canPlaylistItemMoveUp(item)"><i class="fa fa-arrow-up"></i></button>
@@ -42,16 +61,23 @@
     </div><!--arrows-->
 
     <div class="actions">
-
-      <button class="btn btn-xs btn-default editPlaylistItem" ng-click="playlistItemFactory.edit(item)"><i class="fa fa-pencil"></i></button>
-      <button class="btn btn-xs btn-default" id="duplicateButton" ng-click="factory.duplicateItem(item)"><i class="fa fa-copy"></i></button>
-      <button class="btn btn-xs btn-default" id="removeButton" ng-click="remove(item)"><i class="fa fa-trash-o"></i></button>
+      <button class="btn btn-sm btn-default" id="duplicateButton" ng-click="factory.duplicateItem(item)"><i class="fa fa-copy"></i></button>
+      <button class="btn btn-sm btn-default" id="removeButton" ng-click="remove(item)"><i class="fa fa-trash-o"></i></button>
     </div>
 
-    <div>
+    
+    <div class="playlist-item-content">
+      <div class="playlist-item-thumbnail">
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
+      </div>
+
       <div class="nameContainer" ng-show="item.type === 'widget' && (item.objectReference || item.settingsUrl)">
         <a href="#" ng-click="widgetModalFactory.showWidgetModal(item)">
-          <p class="playlist-item-name"><span>{{item.name}}</span> <i class="fa fa-cog"></i></p>
+          <p class="playlist-item-name"><span>{{item.name}}</span></p>
+          
+          <p class="text-small text-muted remove-bottom">
+            <span class="playlist-item-status">10 sec</span>
+          </p>
         </a>
       </div>
       <div  class="nameContainer" ng-hide="item.type === 'widget' && (item.objectReference || item.settingsUrl)" >
@@ -60,7 +86,7 @@
       
       
       <p class="text-small text-muted remove-bottom {{item.subscriptionStatus|subscriptionStatusClass}}">
-      <span class="playlist-item-status">{{item.statusMessage}}</span>
+        <span class="playlist-item-status">{{item.statusMessage}}</span>
       </p>
     </div>
 

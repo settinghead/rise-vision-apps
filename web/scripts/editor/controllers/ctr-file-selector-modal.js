@@ -3,12 +3,15 @@
 angular.module('risevision.editor.controllers')
   .controller('FileSelectorModal', ['$scope', '$modalInstance',
     function ($scope, $modalInstance) {
+      $scope.filterConfig = {
+        placeholder: 'Search for files or folders'
+      };
+      
       $scope.dismiss = function () {
         $modalInstance.dismiss();
       };
 
       $scope.$on("filesPicked", function (event,files) {
-        console.log(files);
         $scope.dismiss();
       })
 
