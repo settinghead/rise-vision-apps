@@ -47,7 +47,7 @@
 </div>
 <div class="modal-body">
 
-  <div class="add-bottom">
+  <div>
     <button class="btn btn-default" ng-class="{active: selected}" ng-init="selected=true" ng-click="selected=true;fileDialog()" type="button" >
       Storage&nbsp;&nbsp;<img src="http://s3.amazonaws.com/Rise-Images/Icons/storage.png" class="storage-selector-icon" ng-class="{'icon-right': label}">
     </button>
@@ -63,7 +63,7 @@
   <div ng-show="selected">
     <search-filter filter-config="filterConfig" search="search" do-search="search.doSearch"></search-filter>
 
-    <ul class="list-unstyled pt-media-list">
+    <ul class="list-unstyled pt-media-list add-top">
       <label for="upload-files">
         <li class="btn-upload">
           <i class="fa fa-cloud-upload fa-lg icon-right"></i>
