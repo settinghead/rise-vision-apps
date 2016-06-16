@@ -11,7 +11,7 @@
         Widget&nbsp;&nbsp;</i>
       </a>
       <a class="btn btn-default" ng-class="{active: !selected}" ng-click="selected=false;" type="button" >
-        Playlist&nbsp;&nbsp;</i>
+        Settings&nbsp;&nbsp;</i>
       </a>
     </div>
 
@@ -76,6 +76,12 @@
       </div><!--form-group-->
 
       <distribution-selector distribution="item.distribution" distribute-to-all="item.distributeToAll"></distribution-selector>
+      
+      <div class="modal-footer">
+
+        <button id="playlistItemSave" class="btn btn-primary" ng-click="save()">{{'common.apply' | translate}} <i class="fa fa-check icon-right"></i></button>
+        <button class="btn btn-default" ng-click="dismiss()">{{'common.cancel' | translate}} <i class="fa fa-times icon-right"></i></button>
+      </div>
     </div><!--modal-body-->
   </div>
 
