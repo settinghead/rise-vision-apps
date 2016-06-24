@@ -1,8 +1,69 @@
-<div>
+<!-- <div>
   <a class="btn btn-primary btn-block" id="addContentButton" ng-click="playlistItemFactory.addContent()">
     {{'editor-app.playlistItem.add' | translate}} <i class="fa fa-plus icon-right"></i>
   </a>
+</div> -->
+
+
+<style>
+/*.editor-playlist-item {
+  box-shadow:0 2px 2px rgba(40,40,40,0.1);
+}
+.editor-playlist .editor-playlist-item .playlist-item-name span {
+  max-width: 100px;
+}*/
+
+/*.playlist-item-thumbnail {
+  overflow: hidden;
+  height: 44px;
+  width: 44px;
+  border: 1px solid #bcbcbc;
+  border-radius: 4px;
+  float: left;
+  margin-right: 10px;
+}
+.playlist-item-thumbnail img {
+  width: 100%;
+}*/
+
+
+</style>
+
+<!-- <div> Add </div> -->
+<div class="btn-group btn-group-justified">
+  <a href="#" class="btn btn-default" ng-click="addItemShortcut('image')"><image src="https://s3.amazonaws.com/ux-design/sprint_prototype/noun_18307_cc.svg"></image>
+<span style="
+    font-size: 13px;
+    display: block;
+    text-align: center;
+    line-height: 15px;
+">Images</span></a></a>
+  <a href="#" class="btn btn-default" ng-click="addItemShortcut('video')"><image src="https://s3.amazonaws.com/ux-design/sprint_prototype/noun_14211_cc.svg"></image>
+<span style="
+    font-size: 13px;
+    display: block;
+    text-align: center;
+    line-height: 15px;
+">Video</span></a></a>
+  <a href="#" class="btn btn-default" ng-click="addTextShortcut()"><image src="https://s3.amazonaws.com/ux-design/sprint_prototype/noun_508199_cc.svg"></image><span style="
+    font-size: 13px;
+    display: block;
+    text-align: center;
+    line-height: 15px;
+">Text</span></a>
+  <a href="#" class="btn btn-default" ng-click="playlistItemFactory.addContent()">
+    <!-- <span class="ph-item-icon"></span> -->
+    <image src="https://s3.amazonaws.com/ux-design/sprint_prototype/noun_309406_cc.svg"></image>
+    <span style="
+    font-size: 13px;
+    display: block;
+    text-align: center;
+    line-height: 15px;
+">Widget</span></a>
+    <!-- <i class="fa fa-plus icon-right"></i> -->
+  </a>
 </div>
+
 
 <div class="editor-playlist scrollable-list add-top">
   <div class="editor-playlist-item" ng-repeat="item in factory.getItems() track by $index">
