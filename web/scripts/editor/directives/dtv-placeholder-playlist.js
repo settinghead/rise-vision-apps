@@ -69,8 +69,8 @@ angular.module('risevision.editor.directives')
             item.type = 'widget';
             item.name = 'Widget from URL';
             item.objectReference = "64cc543c-c2c6-49ab-a4e9-40ceba48a253";
-            item.objectData = "http://s3.amazonaws.com/widget-text/1.0.0/dist/widget.html";
-            item.settingsUrl = "https://s3.amazonaws.com/widget-text/1.0.0/dist/settings.html";
+            item.objectData = "http://s3.amazonaws.com/widget-text-test/stage-0/1.0.0/dist/widget.html";
+            item.settingsUrl = "https://s3.amazonaws.com/widget-text-test/stage-0/1.0.0/dist/settings.html";
             playlistItemFactory.edit(item, true);
           }
 

@@ -17,8 +17,10 @@ angular.module('risevision.editor.controllers')
 
       var _initializing = true;
 
-      // add a placeholder immediately
-      $scope.placeholdersFactory.addNewPlaceholder();
+      if (!editorFactory.presentation.id && !placeholdersFactory.getPlaceholders().length) {
+        // add a placeholder immediately
+        placeholdersFactory.addNewPlaceholder();
+      }
 
       $scope.$watch('factory.presentation', function (newValue, oldValue) {
         if ($scope.hasUnsavedChanges) {

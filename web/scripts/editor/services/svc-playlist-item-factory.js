@@ -35,22 +35,24 @@ angular.module('risevision.editor.services')
           });
       };
       
+      var _addImage = function(file) {
+        var item = _newPlaylistItem();
+        item.type = 'widget';
+        item.name = file.name;
+        item.objectData = 'http://s3.amazonaws.com/widget-image-test/stage-0/0.1.1/dist/widget.html';
+        item.additionalParams = "{\"selector\":{\"selection\":\"single-file\",\"storageName\":\"" + file.name + "\",\"url\":\"https://storage.googleapis.com/risemedialibrary-f114ad26-949d-44b4-87e9-8528afc76ce4/" + file.name + "\"},\"storage\":{\"companyId\":\"f114ad26-949d-44b4-87e9-8528afc76ce4\",\"fileName\":\"" + file.name + "\",\"folder\":\"\"},\"resume\":true,\"scaleToFit\":true,\"position\":\"middle-center\",\"duration\":10,\"pause\":10,\"autoHide\":false,\"url\":\"\",\"background\":{}}";
+        item.settingsUrl = '//s3.amazonaws.com/widget-image-test/stage-0/0.1.1/dist/settings.html';
+        item.objectReference = '2707fc05-5051-4d7b-bcde-01fafd6eaa5e';
+
+        placeholderPlaylistFactory.updateItem(item);
+      }
+
       $rootScope.$on("filesPicked", function (event, files) {
         console.log(files);
         
-        // for (var i; i < files.length; i++) {
-        //   files[i]
-        
-        var item = _newPlaylistItem();
-        item.type = 'widget';
-        item.name = 'flowers_001.jpg';
-        item.objectData = 'http://s3.amazonaws.com/widget-image/0.1.1/dist/widget.html';
-        item.additionalParams = "{\"selector\":{\"selection\":\"single-file\",\"storageName\":\"flowers_001.jpg\",\"url\":\"https://storage.googleapis.com/risemedialibrary-f114ad26-949d-44b4-87e9-8528afc76ce4/flowers_001.jpg\"},\"storage\":{\"companyId\":\"f114ad26-949d-44b4-87e9-8528afc76ce4\",\"fileName\":\"flowers_001.jpg\",\"folder\":\"\"},\"resume\":true,\"scaleToFit\":true,\"position\":\"middle-center\",\"duration\":10,\"pause\":10,\"autoHide\":false,\"url\":\"\",\"background\":{}}";
-        item.settingsUrl = '//s3.amazonaws.com/widget-image/0.1.1/dist/settings.html';
-        item.objectReference = '5233a598-35ce-41a4-805c-fd2147f144a3';
-
-        placeholderPlaylistFactory.updateItem(item);
-        // }
+        for (var i = 0; i < files.length; i++) {
+          _addImage(files[i]);
+        }
       })
 
 
@@ -117,10 +119,25 @@ angular.module('risevision.editor.services')
         return $sce.trustAsResourceUrl(url);
       };
 
+      var _updateItemObjectData = function (item, params) {
+        if (params && item.objectData) {
+          if (_getWidgetHtmlUrl(params)) {
+            item.objectData = params;
+            return;
+          }
+
+          item.objectData = item.objectData.split(/[?#]/)[0];
+          if (params.charAt(0) === '&') {
+            params = params.replace('&', '?');
+          }
+          if (params.charAt(0) !== '?') {
+            params = '?' + params;
+          }
+          item.objectData += params;
+        }
+      };
 
       factory.edit = function (item, showWidgetModal) {
-
-
 
         var modalInstance = $modal.open({
           templateUrl: 'partials/editor/playlist-item-modal.html',
@@ -159,6 +176,16 @@ angular.module('risevision.editor.services')
               return deferred.promise;
             }
           }
+        });
+
+        modalInstance.result.then(function (widgetData) {
+          if (widgetData) {
+            _updateItemObjectData(item, widgetData.params);
+            item.additionalParams = widgetData.additionalParams;
+          }
+        }, function () {
+          // for unit test purposes
+          factory.canceled = true;
         });
       };
 

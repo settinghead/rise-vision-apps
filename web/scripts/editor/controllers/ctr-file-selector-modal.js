@@ -14,6 +14,14 @@ angular.module('risevision.editor.controllers')
       $scope.$on("filesPicked", function (event,files) {
         $scope.dismiss();
       })
-
+      
+      $scope.selectFile = function(name) {
+        var files = [
+          {
+            name: name
+          }
+        ];
+        $scope.$emit("filesPicked", files);
+      }
     }
   ]); //ctr

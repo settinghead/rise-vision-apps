@@ -29,7 +29,7 @@
     display: block;
     text-align: center;
     line-height: 15px;
-">Images</span></a></a>
+">Image</span></a></a>
   <a href="#" class="btn btn-default" ng-click="addItemShortcut('video')"><image src="https://s3.amazonaws.com/ux-design/sprint_prototype/noun_14211_cc.svg"></image>
 <span style="
     font-size: 13px;
@@ -51,7 +51,7 @@
     display: block;
     text-align: center;
     line-height: 15px;
-">Widget</span></a>
+">More</span></a>
     <!-- <i class="fa fa-plus icon-right"></i> -->
   </a>
 </div>
@@ -72,7 +72,7 @@
     
     <div class="playlist-item-content">
       <div class="playlist-item-thumbnail">
-        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
+        <img ng-src="https://storage.googleapis.com/risemedialibrary-f114ad26-949d-44b4-87e9-8528afc76ce4/{{item.name}}">
       </div>
 
       <div class="nameContainer" ng-show="item.type === 'widget' && (item.objectReference || item.settingsUrl)">
@@ -89,13 +89,16 @@
       </div>
       
       
-      <p class="text-small text-muted remove-bottom {{item.subscriptionStatus|subscriptionStatusClass}}">
+      <!-- <p class="text-small text-muted remove-bottom {{item.subscriptionStatus|subscriptionStatusClass}}">
         <span class="playlist-item-status">{{item.statusMessage}}</span>
-      </p>
+      </p> -->
     </div>
 
-    <div ng-hide="factory.getItems().length">
-      <p class="text-center text-muted" translate>editor-app.playlistItem.no-playlistItem</p>
-    </div>
   </div><!--playlist-->
+  
+  <div ng-hide="factory.getItems().length">
+    <p class="text-center text-muted">This Is a Playlist.
+      <br> 
+      Get Started by Adding Images, Video, Text and Widgets.</p>
+  </div>
 </div><!--editor-playlist-->
