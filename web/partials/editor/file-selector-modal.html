@@ -26,11 +26,17 @@
   
   <div ng-show="selected && !sample">
     <button class="btn btn-primary" onclick="document.getElementById('upload-files').click();">Upload Files(s)</button>
-    <search-filter filter-config="filterConfig" search="search" do-search="search.doSearch" style="display: inline-block;position: relative;top: 13px; width:410px; margin-left: 15px;"></search-filter>
+    <search-filter filter-config="filterConfig" search="search" do-search="search.doSearch" style="display: inline-block;position: relative;top: 13px; width:318px; margin-left: 6px;"></search-filter>
+
+    <div class="btn-group half-bottom" style="position:relative;top:4px;margin-left:6px;" ng-init="gridView=true">
+      <a class="btn btn-default" ng-class="{active: gridView}" ng-click="gridView=true"><i class="fa fa-lg fa-th-large"></i></a>
+      <a class="btn btn-default" ng-class="{active: listView}" ng-click="listView=true"><i class="fa fa-lg fa-th-list"></i></a>
+    </div>
 
     <!-- !!CREATE AND EMPTY STATE WITH TIP -->
+
      <!-- <p class="text-muted remove-bottom pull-left">Tip: You can drag and drop files here to upload them.</p> -->
-<div class="scrollable-list add-top">
+<div class="scrollable-list add-top" ng-hide="!gridView">
     <ul class="list-unstyled pt-media-list">
      <!--  <li ng-click="selectFile('flowers_002.jpg')">
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
@@ -145,6 +151,10 @@
         <input type="checkbox" class="checkbox" />
       </li>
     </ul>
+</div>
+
+<div class="scrollable-list add-top" ng-show="listView">
+LIST
 </div>
 
     <div class="add-top text-right">

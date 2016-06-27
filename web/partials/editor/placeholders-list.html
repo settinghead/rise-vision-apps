@@ -1,4 +1,7 @@
 <div class="editor-playlist scrollable-list">
+ 
+ <h4 translate class="add-top" ng-show="designMode && (!fullArtboard || placeholderFactory.placeholder)" >editor-app.workspace.sidebar.title</h4>
+
   <div class="editor-playlist-item clickable placeholderFromSideBar" ng-repeat="placeholder in factory.getPlaceholders() track by $index">
     <div class="pull-right">
       <button class="btn btn-xs btn-default" id="duplicateButton" ng-click="factory.duplicatePlaceholder(placeholder)"><i class="fa fa-copy"></i></button>
