@@ -6,63 +6,163 @@
 
   <h3 class="modal-title">Select Image(s)</h3>
 </div>
-<div class="modal-body">
+<div class="modal-body storage-full" >
 
   <div class="btn-group btn-group-justified half-bottom">
-    <button class="btn btn-default" ng-class="{active: selected}" ng-init="selected=true" ng-click="selected=true;fileDialog()" type="button" >
+    <a class="btn btn-default" ng-class="{active: selected && !sample}" ng-init="selected=true" ng-click="selected=true;sample=false" type="button" >
       Storage&nbsp;&nbsp;<img src="http://s3.amazonaws.com/Rise-Images/Icons/storage.png" class="storage-selector-icon" ng-class="{'icon-right': label}">
-    </button>
-    <button class="btn btn-default" ng-class="{active: !selected}"  ng-click="selected=false;fileDialog()"type="button" >
+    </a>
+    <a class="btn btn-default" ng-class="{active: !selected && !sample}"  ng-click="selected=false;sample=false"type="button" >
       By Url&nbsp;&nbsp;<i class="fa fa-link"></i>
-    </button>
-    <button class="btn btn-default" ng-class="{active: !selected}" ng-click="selected=false;fileDialog()" type="button" >
+    </a>
+    <a class="btn btn-default" ng-class="{active: !selected && sample}" ng-click="selected=false;sample=true" type="button" >
       Sample Gallery&nbsp;&nbsp;<i class="fa fa-images"></i>
-    </button>
+    </a>
   </div>
   
-  <form id="uploadform">
+  <form id="uploadform" style="height:0">
     <input type="file" id="upload-files" file-select multiple style="visibility: hidden;">
   </form>
   
-  <div ng-show="selected">
-    <search-filter filter-config="filterConfig" search="search" do-search="search.doSearch"></search-filter>
+  <div ng-show="selected && !sample">
+    <button class="btn btn-primary" onclick="document.getElementById('upload-files').click();">Upload Files(s)</button>
+    <search-filter filter-config="filterConfig" search="search" do-search="search.doSearch" style="display: inline-block;position: relative;top: 13px; width:410px; margin-left: 15px;"></search-filter>
 
-    <ul class="list-unstyled pt-media-list add-top">
-      <label for="upload-files">
-        <li class="btn-upload">
-          <i class="fa fa-cloud-upload fa-lg icon-right"></i>
-          <span>Upload File(s)</span>
-        </li>
-      </label>
-      <li ng-click="selectFile('flowers_002.jpg')"><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg"></li>
-      <li ng-click="selectFile('flowers_001.jpg')"><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg"></li>
-      <li ng-click="selectFile('flower_003.jpg')"><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg"></li>
-      <!-- <li>
-      <i class="fa fa-play pt-overlay"></i>
-      <img
-      <img style="width: 100%; height: 100%;" src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_005.jpg"></li>
-      -->
+    <!-- !!CREATE AND EMPTY STATE WITH TIP -->
+     <!-- <p class="text-muted remove-bottom pull-left">Tip: You can drag and drop files here to upload them.</p> -->
+<div class="scrollable-list add-top">
+    <ul class="list-unstyled pt-media-list">
+     <!--  <li ng-click="selectFile('flowers_002.jpg')">
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
+        <input type="checkbox" class="checkbox" />
+      </li> -->
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
+        <input type="checkbox" class="checkbox" />
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
+        <input type="checkbox" class="checkbox" />
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
+        <input type="checkbox" class="checkbox" />
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
+        <input type="checkbox" class="checkbox" />
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
+        <input type="checkbox" class="checkbox" />
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
+        <input type="checkbox" class="checkbox" />
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
+        <input type="checkbox" class="checkbox" />
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
+        <input type="checkbox" class="checkbox" />
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
+        <input type="checkbox"  class="checkbox"/>
+      </li>
+      <li>
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
+        <input type="checkbox" class="checkbox" />
+      </li>
     </ul>
+</div>
 
     <div class="add-top text-right">
-      <p class="text-muted remove-bottom pull-left">Tip: You can drag and drop files here to upload them.</p>
-      <button class="btn btn-primary">Select <i class="fa fa-check icon-right"></i></button>
+      <button class="btn btn-primary" ng-click="selectFile('flower_003.jpg')" >Add <i class="fa fa-plus icon-right"></i></button>
       <button class="btn btn-default" ng-click="dismiss()">
         {{'common.cancel' | translate}} <i class="fa fa-white fa-times icon-right"></i>
       </button>
     </div>
   </div>
   
-  <div ng-hide="selected">
+  <div ng-show="!selected && !sample">
     <label class="control-label">URL</label>
     <div class="input-group">
-      
       <input type="text" name="" class="form-control">
       <span class="input-group-addon clickable">
         Add
       </span>
     </div>
-
     <div class="content-box add-padding add-top">
       <h3 class="remove-top">Try Storage</h3>
       <p>Add multiple images, create slideshows, and get automatic video encoding.</p>
@@ -70,7 +170,23 @@
 $10 per Company per Month.</p>
       <button class="btn btn-primary">Start Your Free Trial</button>
     </div>
+  </div>
 
+  <div ng-show="!selected && sample" >
+   <ul class="list-unstyled pt-media-list add-top">
+      <li ng-click="selectFile('flowers_002.jpg')"><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg"></li>
+      <li ng-click="selectFile('flowers_001.jpg')"><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg"></li>
+      <li ng-click="selectFile('flower_003.jpg')"><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg"></li>
+       <li ng-click="selectFile('flowers_002.jpg')"><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg"></li>
+      <li ng-click="selectFile('flowers_001.jpg')"><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg"></li>
+      <li ng-click="selectFile('flower_003.jpg')"><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg"></li>
+    </ul>
+    <div class="add-top text-right">
+      <button class="btn btn-primary">Add <i class="fa fa-plus icon-right"></i></button>
+      <button class="btn btn-default" ng-click="dismiss()">
+        {{'common.cancel' | translate}} <i class="fa fa-white fa-times icon-right"></i>
+      </button>
+    </div>
   </div>
 
 </div><!--file-selector-->
