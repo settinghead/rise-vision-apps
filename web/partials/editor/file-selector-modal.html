@@ -114,7 +114,7 @@ $('input:checkbox').change(function(){
 </script>
 
      <!-- <p class="text-muted remove-bottom pull-left">Tip: You can drag and drop files here to upload them.</p> -->
-<div class="scrollable-list content-box" style="padding:4px;" ng-hide="!gridView || EmptyState || revealCrumb" ng-show="!EmptyState">
+<div class="scrollable-list content-box" style="padding:4px;max-height:calc(100vh - 410px);" ng-hide="!gridView || EmptyState || revealCrumb" ng-show="!EmptyState">
     <ul class="list-unstyled pt-media-list">
      <!--  <li ng-click="selectFile('flowers_002.jpg')">
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
@@ -308,7 +308,7 @@ $('input:checkbox').change(function(){
       </li>
     </ul>
 </div>
-<div class="scrollable-list content-box" style="padding:4px;" ng-hide="!revealCrumb" ng-show="revealCrumb">
+<div class="scrollable-list content-box" style="padding:4px;max-height:calc(100vh - 410px);" ng-hide="!revealCrumb" ng-show="revealCrumb">
     <ul class="list-unstyled pt-media-list">
      
       <li>
@@ -326,7 +326,7 @@ $('input:checkbox').change(function(){
     </ul>
 </div>
 
-<div class="scrollable-list content-box" ng-show="listView">
+<div class="scrollable-list content-box" style="padding:4px;max-height:calc(100vh - 410px);" ng-show="listView">
 <table class="table-2 table-hover table-selector multiple-selector">
   <thead>
     <tr>
