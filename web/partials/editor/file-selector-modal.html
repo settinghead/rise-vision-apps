@@ -12,12 +12,9 @@
     <a class="btn btn-default" ng-class="{active: selected}" ng-init="selected=true" ng-click="selected=true" type="button" >
       Storage&nbsp;&nbsp;<img src="http://s3.amazonaws.com/Rise-Images/Icons/storage.png" class="storage-selector-icon" ng-class="{'icon-right': label}">
     </a>
-    <a class="btn btn-default" ng-class="{active: !selected}"  ng-click="selected=false"type="button" >
+    <a class="btn btn-default" ng-class="{active: !selected}"  ng-click="selected=false" type="button" >
       By URL&nbsp;&nbsp;<i class="fa fa-link"></i>
     </a>
-   <!--  <a class="btn btn-default" ng-class="{active: !selected && sample}" ng-click="selected=false;sample=true" type="button" >
-      Sample Gallery&nbsp;&nbsp;<i class="fa fa-images"></i>
-    </a> -->
   </div>
   
   <form id="uploadform" style="height:0">
@@ -28,19 +25,27 @@
     
      
 
-     <button class="btn btn-default" ng-click="newFolderButtonClick('md');EmptyState=false" onclick="$('#AddButton').removeClass('disabled');">Add Folder</button>
-    <button class="btn btn-primary" onclick="document.getElementById('upload-files').click();$('#AddButton').removeClass('disabled');" ng-click="EmptyState=false">Upload Files(s)</button>
+    <button class="btn btn-default" ng-click="newFolderButtonClick('md');EmptyState=false" ng-show="trialActivated" onclick="$('#AddButton').removeClass('disabled');">Create Folder</button>
 
-    <div class="btn-group pull-right" ng-init="gridView=true">
+<button class="btn btn-primary" onclick="document.getElementById('upload-files').click();$('#AddButton').removeClass('disabled');" ng-click="EmptyState=false" ng-show="trialActivated" title="Select individual images to add and order them in your Playlist.">Upload Files</button>
+
+<button class="btn btn-primary" ng-show="trialActivated" onclick="document.getElementById('upload-files').click();$('#AddButton').removeClass('disabled');" ng-click="EmptyState=false">Upload Folder<i class="fa fa-folder icon-right"></i> </button>
+
+
+    <div class="btn-group pull-right" ng-init="gridView=true" ng-show="trialActivated">
       <a class="btn btn-default" ng-class="{active: gridView && !listView}" ng-click="gridView=true;listView=false"><i class="fa fa-lg fa-th-large"></i></a>
       <a class="btn btn-default" ng-class="{active: listView && !gridView}" ng-click="listView=true;gridView=false"><i class="fa fa-lg fa-th-list"></i></a>
     </div>
 
-    <search-filter filter-config="filterConfig" search="search" do-search="search.doSearch" class="half-top" style="display: inline-block"></search-filter>
 
-    
+ <div class="subscription-status trial add-top" ng-show="trialActivated" >
+        <span>29 days remaining on your trial</span>
+        <button type="button" class="btn btn-primary add-left">
+          <span translate="subscription-status.subscribe-now">Subscribe Now!</span>
+        </button>
+ </div>
+  
 
-    <!-- !!CREATE AND EMPTY STATE WITH TIP -->
     <div class="file-empty-state content-box add-top" ng-hide="!EmptyState" ng-init="EmptyState=true" style="padding-top: 0;
     padding-bottom: 10px;">
 
@@ -60,28 +65,17 @@
         </div>
       </div>
 
-       <div class="subscription-status trial add-top" ng-show="trialActivated" >
-        <span>29 days remaining on your trial</span>
-        <button type="button" class="btn btn-primary add-left">
-          <span translate="subscription-status.subscribe-now">Subscribe Now!</span>
-        </button>
-        </div>
 
       <div ng-show="trialActivated" style="margin-bottom:160px;">
       <p class="product-graphic" style="width: 100%;height: 24px;">You haven't uploaded any files yet! </p>
-      <span> Select 'Upload Files' or 'Add Folder'.</span>
+      <span> Select 'Upload Files' or 'Create Folder'.</span><br/><br/>
+      <div><span>Select a folder to show a slideshow that updates as you add or remove images from that folder,<br/> or select individual images to add and order them in your Playlist.</span></div>
       </div>
 
     </div>
 
    <div class="add-top" ng-show="!EmptyState">
-       <div class="subscription-status trial add-top" ng-show="trialActivated" >
-        <span>29 days remaining on your trial</span>
-        <button type="button" class="btn btn-primary add-left">
-          <span translate="subscription-status.subscribe-now">Subscribe Now!</span>
-        </button>
-        </div>
-
+     <div class="col-xs-6" style="padding:0">
       <ol class="breadcrumb" ng-init="revealCrumb=false" ng-hide="revealCrumb">
           <li class="active">My Storage</li>
       </ol>
@@ -89,32 +83,50 @@
           <li><a href="#" ng-click="revealCrumb=false">My Storage</a></li>
           <li class="active">Instagram Folder</li>
       </ol>
+    </div>
+    <div class="col-xs-6">
+     <search-filter filter-config="filterConfig" search="search" do-search="search.doSearch" ng-show="trialActivated" style="display: inline-block"></search-filter>
+    </div>
    </div>
 
 <style>
 .selectedBorder {
   border: 6px solid #4ab767;
-  transition: border .1s ease;  
-
- 
 }
 .pt-media-list img {
    width: 100%;
   height: 100%;
 }
 </style>
+
 <script>
+$('input:checkbox').click(function(){
+    event.stopPropagation();
+  });
+
 $('input:checkbox').change(function(){
     if($(this).is(":checked")) {
-        $(this).prev().addClass("selectedBorder");
+        $(this).prev().addClass("selectedBorder", 100, "linear");
     } else {
-        $(this).removeClass("selectedBorder");
+        $(this).prev().removeClass("selectedBorder", 100, "linear");
+    }
+});
+
+</script>
+<script>
+$('.folder input:checkbox').change(function(){
+    if($(this).is(":checked")) {
+        $(this).closest( "li" ).addClass("folder-extended", 100, "linear");
+        $(this).next().next().removeClass("hidden");
+    } else {
+        $(this).closest( "li" ).removeClass("folder-extended", 100, "linear");
+        $(this).next().next().addClass("hidden");
     }
 });
 </script>
 
      <!-- <p class="text-muted remove-bottom pull-left">Tip: You can drag and drop files here to upload them.</p> -->
-<div class="scrollable-list content-box" style="padding:4px;max-height:calc(100vh - 410px);" ng-hide="!gridView || EmptyState || revealCrumb" ng-show="!EmptyState">
+<div class="scrollable-list content-box" style="padding:4px;max-height:calc(100vh - 410px);width:100%" ng-hide="!gridView || EmptyState || revealCrumb" ng-show="!EmptyState">
     <ul class="list-unstyled pt-media-list">
      <!--  <li ng-click="selectFile('flowers_002.jpg')">
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
@@ -132,10 +144,11 @@ $('input:checkbox').change(function(){
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
         <input type="checkbox" class="checkbox" />
       </li>
-      <li class="folder" ng-click="revealCrumb=true">
-        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/folder.png">
+      <li class="folder">
+        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/folder.png" ng-click="revealCrumb=true">
         <input type="checkbox"  class="checkbox"/>
         <span>Instagram Folder</span>
+         <span class="hidden image-folder-info"> This folder will create a slideshow item that updates dynamically as you add or delete image files from it. </span>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
@@ -153,6 +166,7 @@ $('input:checkbox').change(function(){
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/folder.png">
         <input type="checkbox"  class="checkbox"/>
         <span>My Flickr Pictures</span>
+         <span class="hidden image-folder-info"> This folder will create a slideshow item that updates dynamically as you add or delete image files from it. </span>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
@@ -308,7 +322,7 @@ $('input:checkbox').change(function(){
       </li>
     </ul>
 </div>
-<div class="scrollable-list content-box" style="padding:4px;max-height:calc(100vh - 410px);" ng-hide="!revealCrumb" ng-show="revealCrumb">
+<div class="scrollable-list content-box" style="padding:4px;max-height:calc(100vh - 410px);width:100%" ng-hide="!revealCrumb" ng-show="revealCrumb">
     <ul class="list-unstyled pt-media-list">
      
       <li>
@@ -326,7 +340,7 @@ $('input:checkbox').change(function(){
     </ul>
 </div>
 
-<div class="scrollable-list content-box" style="padding:4px;max-height:calc(100vh - 410px);" ng-show="listView">
+<div class="scrollable-list content-box" style="padding:4px;max-height:calc(100vh - 410px);width:100%" ng-show="listView">
 <table class="table-2 table-hover table-selector multiple-selector">
   <thead>
     <tr>
@@ -403,11 +417,17 @@ $('input:checkbox').change(function(){
             <span class="ng-binding"> 1920x1080 </span>
         </td>
     </tr>
-    <tr class="clickable-row ng-scope" ng-click="fileClick(file);">
+    <tr class="clickable-row ng-scope">
         <td colspan="5">
             <span class="folder ng-binding">Instagram Folder/</span>
         </td>
     </tr>
+    <tr class="info-row"> 
+    <td colspan="5"> 
+    <span class=" ng-binding"> This folder will create a slideshow item that updates dynamically as you add or delete image files from it. </span> 
+    </td> 
+    </tr>
+
      <tr class="clickable-row ng-scope" ng-click="fileClick(file);">
         <td class="col-sm-6">
             <span class="file" ng-class="{&quot;throttled-type&quot;: file.isThrottled &amp;&amp; !fileIsFolder(file)}">
@@ -495,8 +515,8 @@ $('input:checkbox').change(function(){
 
 
 
-    <div class="add-top text-right">
-      <button class="btn btn-primary disabled" id="AddButton" ng-click="selectFile('flower_003.jpg')" >Add <i class="fa fa-plus icon-right"></i></button>
+    <div class="add-top text-right" ng-show="trialActivated">
+      <button class="btn btn-primary disabled" id="AddButton" ng-click="selectFile('flower_003.jpg')" >Add Selection <i class="fa fa-plus icon-right"></i></button>
       <button class="btn btn-default" ng-click="dismiss()">
         {{'common.cancel' | translate}} <i class="fa fa-white fa-times icon-right"></i>
       </button>
@@ -511,30 +531,8 @@ $('input:checkbox').change(function(){
         Add
       </span>
     </div>
-    <div class="content-box add-padding add-top">
-      <h3 class="remove-top">Try Storage</h3>
-      <p>Add multiple images, create slideshows, and get automatic video encoding.</p>
-      <p>Free 30 days trial. No credit card required.
-$10 per Company per Month.</p>
-      <button class="btn btn-primary">Start Your Free Trial</button>
-    </div>
+   
   </div>
 
- <!--  <div ng-show="!selected && sample" >
-   <ul class="list-unstyled pt-media-list add-top">
-      <li ng-click="selectFile('flowers_002.jpg')"><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg"></li>
-      <li ng-click="selectFile('flowers_001.jpg')"><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg"></li>
-      <li ng-click="selectFile('flower_003.jpg')"><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg"></li>
-       <li ng-click="selectFile('flowers_002.jpg')"><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg"></li>
-      <li ng-click="selectFile('flowers_001.jpg')"><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg"></li>
-      <li ng-click="selectFile('flower_003.jpg')"><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg"></li>
-    </ul>
-    <div class="add-top text-right">
-      <button class="btn btn-primary">Add <i class="fa fa-plus icon-right"></i></button>
-      <button class="btn btn-default" ng-click="dismiss()">
-        {{'common.cancel' | translate}} <i class="fa fa-white fa-times icon-right"></i>
-      </button>
-    </div>
-  </div> -->
 
-</div><!--file-selector-->
+</div>

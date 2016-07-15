@@ -25,7 +25,15 @@
 
 
 <div class="editor-playlist scrollable-list add-top">
-  <div class="editor-playlist-item" ng-repeat="item in factory.getItems() track by $index">
+
+<div ng-hide="factory.getItems().length">
+    <p class="text-muted text-center remove-bottom">This is your Playlist item list.</p>
+    <br/>
+    <p class="text-muted text-center remove-bottom">Here you can sort the <b>order </b>and set <b>durations</b> on the content you add.</p>
+</div>
+
+
+  <div class="editor-playlist-item" ng-repeat="item in factory.getItems() track by $index" ng-show="factory.getItems().length">
 
     <div class="arrows">
       <button class="btn btn-block btn-xs btn-default" id="moveUpButton" ng-click="factory.movePlaylistItemUp(item)" ng-disabled="!factory.canPlaylistItemMoveUp(item)"><i class="fa fa-arrow-up"></i></button>
@@ -41,8 +49,8 @@
 
     <div>
       <div class="nameContainer" ng-show="item.type === 'widget' && (item.objectReference || item.settingsUrl)">
-        <a href="#" ng-click="widgetModalFactory.showWidgetModal(item)">
-          <p class="playlist-item-name"><span>{{item.name}}</span> <i class="fa fa-cog"></i></p>
+        <a href="#" ng-click="playlistItemFactory.edit(item)">
+          <p class="playlist-item-name"><span>{{item.name}}</span> </p>
         </a>
       </div>
       <div  class="nameContainer" ng-hide="item.type === 'widget' && (item.objectReference || item.settingsUrl)" >
