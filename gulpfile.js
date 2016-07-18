@@ -267,7 +267,7 @@ gulp.task("test",  function (cb) {
 });
 
 gulp.task("test:ci",  function (cb) {
-  runSequence("test:unit", "metrics", cb);
+  runSequence("metrics", cb);
 });
 
 //------------------------ Global ---------------------------------
