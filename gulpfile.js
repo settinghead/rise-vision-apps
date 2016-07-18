@@ -158,7 +158,7 @@ gulp.task("lint", function() {
     .pipe(jshint.reporter("jshint-stylish"));
 });
 
-gulp.task("html", ["lint"], function () {
+gulp.task("html", function () {
   return gulp.src(['./web/index.html', './web/storage-selector.html'])
     .pipe(usemin({
       css: [minifyCss, 'concat'],
