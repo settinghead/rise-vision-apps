@@ -27,9 +27,9 @@
 <div class="editor-playlist scrollable-list add-top">
 
 <div ng-hide="factory.getItems().length">
-    <p class="text-muted text-center remove-bottom">This is your Playlist item list.</p>
+    <p class="text-muted text-center remove-bottom">This is your Playlist. You can add your Images, Videos, Text and Widgets here. </p>
     <br/>
-    <p class="text-muted text-center remove-bottom">Here you can sort the <b>order </b>and set <b>durations</b> on the content you add.</p>
+    <p class="text-muted text-center remove-bottom">You can also sort the <b> order </b> and set the <b>durations</b> of each.</p>
 </div>
 
 
@@ -42,16 +42,17 @@
 
     <div class="actions">
 
-      <button class="btn btn-xs btn-default editPlaylistItem" ng-click="playlistItemFactory.edit(item)"><i class="fa fa-pencil"></i></button>
+      <button class="btn btn-xs btn-default editPlaylistItem" ng-click="playlistItemFactory.loadClassicFileSelector()"><i class="fa fa-pencil"></i></button>
       <button class="btn btn-xs btn-default" id="duplicateButton" ng-click="factory.duplicateItem(item)"><i class="fa fa-copy"></i></button>
       <button class="btn btn-xs btn-default" id="removeButton" ng-click="remove(item)"><i class="fa fa-trash-o"></i></button>
     </div>
 
     <div>
       <div class="nameContainer" ng-show="item.type === 'widget' && (item.objectReference || item.settingsUrl)">
-        <a href="#" ng-click="widgetModalFactory.showWidgetModal(item)">
-          <p class="playlist-item-name"><span>{{item.name}}</span> </p>
-        </a>
+        
+          <p><span>{{item.name}}</span> </p>
+          <a href="#" ><p><span class="playlist-item-name" ng-click="playlistItemFactory.edit(item)"> Duration: 10 sec </span></p>  </a>
+      
       </div>
       <div  class="nameContainer" ng-hide="item.type === 'widget' && (item.objectReference || item.settingsUrl)" >
         <p class="playlist-item-name">{{item.name}}</p>

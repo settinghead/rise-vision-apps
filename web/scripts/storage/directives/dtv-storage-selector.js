@@ -28,6 +28,8 @@
                 size: 'lg'
               });
 
+              
+
               $scope.modalInstance.result.then(function (files) {
                 $log.info('Files selected: ' + files);
 
@@ -39,6 +41,12 @@
               });
 
             };
+
+           
+
+            
+
+
           }
         };
       }

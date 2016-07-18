@@ -22,10 +22,24 @@
     </div>
 
     <div class="ph-list">
-      <button id="addPlaceholderButton" class="btn btn-primary btn-block" ng-show="designMode" ng-click="addNewPlaceholder()">Add Playlist<i class="fa fa-plus icon-right"></i></button>
+      <button id="addPlaceholderButton" class="btn btn-primary btn-block protip" data-pt-title="Click here to bring Images, Videos and Widgets into this Presentation!" data-pt-position="bottom" data-pt-width="600" data-pt-gravity="false" data-pt-auto-hide="13000" data-pt-animate="bounceIn" ng-show="designMode" ng-click="addNewPlaceholder()">Add Playlist<i class="fa fa-plus icon-right"></i></button>
       <placeholders-list></placeholders-list>
     </div>
 
+    <script>
+    $(document).ready(function(){
+      $.protip();
+
+      var el = $('#addPlaceholderButton');
+
+      el.hover(function() {
+          el.protipHideInside();
+      });
+
+      el.protipShow();
+
+    });
+    </script>
 
   </div><!--content-box-body-->
 </div><!--workspaceSidebar-->

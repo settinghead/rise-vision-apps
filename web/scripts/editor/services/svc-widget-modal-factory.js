@@ -82,7 +82,7 @@ angular.module('risevision.editor.services')
       };
 
       factory.showWidgetModal = function (item) {
-        /*if (!item.objectReference && !item.settingsUrl) {
+        if (!item.objectReference && !item.settingsUrl) {
           return;
         }
 
@@ -133,7 +133,7 @@ angular.module('risevision.editor.services')
           // for unit test purposes
           factory.canceled = true;
         });
-        */
+        
       };
 
       return factory;

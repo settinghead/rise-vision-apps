@@ -1,0 +1,156 @@
+<div id="storageClassicSelectorModal">
+   
+
+    <div class="modal-header">
+        <button type="button" id="closeButton" class="close" ng-click="fileSelectorFactory.cancel()" data-dismiss="modal" aria-hidden="true">
+            <i class="fa fa-times"></i>
+        </button>
+        <h3 class="modal-title">
+            Image Settings
+            <a class="btn btn-link" href="https://github.com/Rise-Vision/widget-image" target="_blank">
+              <i class="fa fa-github fa-2x icon-gray"></i>
+            </a>
+          </h3>
+    </div>
+
+
+    <form role="form" name="settingsForm" class="ng-valid ng-valid-selector-valid ng-dirty">
+        <div class="modal-body">
+            <!-- File Selector -->
+            <file-selector id="file-selector" name="fileSelector" file-type="image" selector="settings.additionalParams.selector" ng-model="fileselector" selector-valid="" valid="">
+                <div class="form-group file-selector">
+             
+                    <label ng-if="title" class="control-label remove-bottom">How do you want to show your image(s)?</label>
+                    
+                    <div class="row half-top half-bottom" ng-controller="modalCtrl">
+                        <div class="col-md-12">
+                           
+                                <button class="btn btn-default active" ng-class="{active: selected}" ng-click="openProtoSingle()" type="button">
+                                    Single Image<img src="http://s3.amazonaws.com/Rise-Images/Icons/storage.png" class="storage-selector-icon icon-right" ng-class="{'icon-right': label}">
+                                </button>
+                          
+                                <button class="btn btn-default ng-binding" ng-class="{active: selected}" ng-click="openProtoFolder()" type="button">
+                                    Folder of Image(s)<img src="http://s3.amazonaws.com/Rise-Images/Icons/storage.png" class="storage-selector-icon icon-right" ng-class="{'icon-right': label}">
+                                </button>
+
+	                            <button name="customBtn" type="button" class="btn btn-default ng-binding" ng-class="{active: customBtnSelected}" ng-click="onCustomBtnHandler()">Custom URL
+	                                <i class="fa fa-link fa-large"></i>
+	                            </button>
+                        </div>
+                    </div>
+                    <!-- Storage Single File - Input -->
+                    <!-- ngIf: selector.selection === 'single-file' -->
+                    <div class="form-group ng-scope">
+                        <div class="input-group custom-addon">
+                            <input name="storage-file-name" type="text" class="form-control" placeholder="image.jpeg" readonly="">
+                            <span class="input-group-addon">
+        <button name="previewBtn" class="btn btn-default ng-binding" ng-click="previewFile()">Preview File
+          <img src="http://s3.amazonaws.com/Rise-Images/Icons/newtab-icon.png" class="storage-selector-icon icon-right">
+        </button>
+      </span>
+                        </div>
+                        <!-- ngIf: !selectorValid && fileType === 'image' -->
+                        <!-- ngIf: !selectorValid && fileType === 'video' -->
+                    </div>
+                    <!-- end ngIf: selector.selection === 'single-file' -->
+                    <!-- Storage Single Folder - Input -->
+                    <!-- ngIf: selector.selection === 'single-folder' -->
+                    <!-- Custom File - Input -->
+                    <!-- ngIf: selector.selection === 'custom' -->
+                    <!-- Storage Subscription Status -->
+                    <!-- ngIf: !isSubscribed && !hideSubscription && !subscriptionOff -->
+                </div>
+            </file-selector>
+            <!-- Resume Playback -->
+            <div class="form-group ng-hide" ng-show="isFolder">
+                <div class="checkbox">
+                    <label for="resume" class="ng-binding">
+                        <input id="resume" type="checkbox" ng-model="settings.additionalParams.resume" class="ng-pristine ng-untouched ng-valid"> Resume Playing from Last Position
+                    </label>
+                </div>
+            </div>
+            <!-- Scale to Fit -->
+            <div class="form-group">
+                <div class="checkbox">
+                    <label for="scale-to-fit" class="ng-binding">
+                        <input id="scale-to-fit" type="checkbox" ng-model="settings.additionalParams.scaleToFit" class="ng-pristine ng-untouched ng-valid"> Scale to Fit
+                    </label>
+                </div>
+            </div>
+            <!-- Alignment -->
+            <div class="form-group">
+                <position-setting position="settings.additionalParams.position" class="ng-isolate-scope">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <!-- ngIf: !hideLabel -->
+                            <label ng-if="!hideLabel" class="ng-binding ng-scope"> Alignment</label>
+                            <!-- end ngIf: !hideLabel -->
+                            <select name="position" ng-model="position" class="form-control ng-pristine ng-untouched ng-valid">
+                                <option value="top-left" class="ng-binding">Top Left</option>
+                                <option value="top-center" class="ng-binding">Top Center</option>
+                                <option value="top-right" class="ng-binding">Top Right</option>
+                                <option value="middle-left" class="ng-binding">Middle Left</option>
+                                <option value="middle-center" class="ng-binding">Middle Center</option>
+                                <option value="middle-right" class="ng-binding">Middle Right</option>
+                                <option value="bottom-left" class="ng-binding">Bottom Left</option>
+                                <option value="bottom-center" class="ng-binding">Bottom Center</option>
+                                <option value="bottom-right" class="ng-binding">Bottom Right</option>
+                            </select>
+                        </div>
+                    </div>
+                </position-setting>
+            </div>
+            <!-- Duration -->
+            <div class="form-group ng-hide" ng-show="isFolder">
+                <label class="ng-binding">Duration each image shows for:</label>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid" value="10" ng-model="settings.additionalParams.duration">
+                            <span class="input-group-addon">sec</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Resume Playing After -->
+            <div class="form-group ng-hide" ng-show="isFolder">
+                <label class="ng-binding">If image is touched resume playing after:</label>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid" value="10" ng-model="settings.additionalParams.pause">
+                            <span class="input-group-addon">sec</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Auto Hide Navigation -->
+            <div class="form-group ng-hide" ng-show="isFolder">
+                <div class="checkbox">
+                    <label for="auto-hide" class="ng-binding">
+                        <input type="checkbox" ng-model="settings.additionalParams.autoHide" class="ng-pristine ng-untouched ng-valid"> Auto Hide Navigation
+                    </label>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <!-- .modal-body -->
+        <!-- Modal Footer-->
+        <div class="modal-footer">
+            <!-- Button Toolbar -->
+            <widget-button-toolbar save="saveSettings()" cancel="closeSettings()" disable-save="settingsForm.$invalid" class="ng-isolate-scope">
+                <div class="pull-right">
+                    <button id="save" class="btn btn-primary btn-fixed-width" type="button" ng-click="save()" ng-disabled="disableSave()">
+                        <span class="ng-binding">Save</span>
+                        <i class="fa fa-white fa-check icon-right"></i>
+                    </button>
+                    <button id="cancel" class="btn btn-default btn-fixed-width" type="button" ng-click="cancel()">
+                        <span class="ng-binding">Cancel</span>
+                        <i class="fa fa-white fa-times icon-right"></i>
+                    </button>
+                </div>
+            </widget-button-toolbar>
+        </div>
+    </form>
+</div>
+

@@ -11,7 +11,8 @@
   "license": "GNU",
   "dependencies": {
     "bower": "^1.5.3",
-    "browser-sync": "^2.13.0"
+    "browser-sync": "^2.13.0",
+    "protip": "^1.4.13"
   },
   "devDependencies": {
     "browser-sync": "^2.8.2",

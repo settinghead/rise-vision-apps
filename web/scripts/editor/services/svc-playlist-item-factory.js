@@ -41,7 +41,7 @@ angular.module('risevision.editor.services')
         item.name = file.name;
         item.objectData = 'http://s3.amazonaws.com/widget-image-test/stage-0/0.1.1/dist/widget.html';
         item.additionalParams = "{\"selector\":{\"selection\":\"single-file\",\"storageName\":\"" + file.name + "\",\"url\":\"https://storage.googleapis.com/risemedialibrary-f114ad26-949d-44b4-87e9-8528afc76ce4/" + file.name + "\"},\"storage\":{\"companyId\":\"f114ad26-949d-44b4-87e9-8528afc76ce4\",\"fileName\":\"" + file.name + "\",\"folder\":\"\"},\"resume\":true,\"scaleToFit\":true,\"position\":\"middle-center\",\"duration\":10,\"pause\":10,\"autoHide\":false,\"url\":\"\",\"background\":{}}";
-        item.settingsUrl = '//s3.amazonaws.com/widget-image-test/stage-0/0.1.1/dist/settings.html';
+        item.settingsUrl = '//s3.amazonaws.com/widget-image/0.1.1/dist/settings.html';
         item.objectReference = '2707fc05-5051-4d7b-bcde-01fafd6eaa5e';
 
         placeholderPlaylistFactory.updateItem(item);
@@ -188,6 +188,16 @@ angular.module('risevision.editor.services')
           factory.canceled = true;
         });
       };
+
+       factory.loadClassicFileSelector = function (item, showWidgetModal) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/storage/prototype-file-selector.html',
+          size: 'lg',
+          controller: 'WidgetItemModalController'
+        });
+      };
+
+
 
       factory.addWidgetByUrl = function () {
         presentationTracker('Add Widget By URL', editorFactory.presentation

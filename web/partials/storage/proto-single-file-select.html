@@ -4,41 +4,41 @@
     <i class="fa fa-times"></i>
   </button>
 
-  <h3 class="modal-title">Select Images</h3>
+  <h3 class="modal-title">Select an Image</h3>
 </div>
 <div class="modal-body storage-full" >
 
-  <div class="btn-group btn-group-justified half-bottom">
+  <!-- <div class="btn-group btn-group-justified half-bottom">
     <a class="btn btn-default" ng-class="{active: selected}" ng-init="selected=true" ng-click="selected=true" type="button" >
       Storage&nbsp;&nbsp;<img src="http://s3.amazonaws.com/Rise-Images/Icons/storage.png" class="storage-selector-icon" ng-class="{'icon-right': label}">
     </a>
     <a class="btn btn-default" ng-class="{active: !selected}"  ng-click="selected=false" type="button" >
       By URL&nbsp;&nbsp;<i class="fa fa-link"></i>
     </a>
-  </div>
+  </div> -->
   
   <form id="uploadform" style="height:0">
     <input type="file" id="upload-files" file-select multiple style="visibility: hidden;">
   </form>
   
-  <div ng-show="selected">
+  <div>
     
      
 
-    <button class="btn btn-default" ng-click="newFolderButtonClick('md');EmptyState=false" ng-show="trialActivated" onclick="$('#AddButton').removeClass('disabled');">Create Folder</button>
+    <button class="btn btn-default" ng-click="newFolderButtonClick('md');" onclick="$('#AddButton').removeClass('disabled');">Create Folder</button>
 
-<button class="btn btn-primary" onclick="document.getElementById('upload-files').click();$('#AddButton').removeClass('disabled');" ng-click="EmptyState=false" ng-show="trialActivated" title="Select individual images to add and order them in your Playlist.">Upload Files</button>
+<button class="btn btn-primary" onclick="document.getElementById('upload-files').click();$('#AddButton').removeClass('disabled');" title="Select individual images to add and order them in your Playlist.">Upload Files</button>
 
-<button class="btn btn-primary" ng-show="trialActivated" onclick="document.getElementById('upload-files').click();$('#AddButton').removeClass('disabled');" ng-click="EmptyState=false">Upload Folder<i class="fa fa-folder icon-right"></i> </button>
+<button class="btn btn-primary" onclick="document.getElementById('upload-files').click();$('#AddButton').removeClass('disabled');">Upload Folder<i class="fa fa-folder icon-right"></i> </button>
 
 
-    <div class="btn-group pull-right" ng-init="gridView=true" ng-show="trialActivated">
+    <div class="btn-group pull-right" ng-init="gridView=true" >
       <a class="btn btn-default" ng-class="{active: gridView && !listView}" ng-click="gridView=true;listView=false"><i class="fa fa-lg fa-th-large"></i></a>
       <a class="btn btn-default" ng-class="{active: listView && !gridView}" ng-click="listView=true;gridView=false"><i class="fa fa-lg fa-th-list"></i></a>
     </div>
 
 
- <div class="subscription-status trial add-top" ng-show="trialActivated" >
+ <div class="subscription-status trial add-top" >
         <span>29 days remaining on your trial</span>
         <button type="button" class="btn btn-primary add-left">
           <span translate="subscription-status.subscribe-now">Subscribe Now!</span>
@@ -46,38 +46,9 @@
  </div>
   
 
-    <div class="file-empty-state content-box add-top" ng-hide="!EmptyState" ng-init="EmptyState=true" style="padding-top: 0;
-    padding-bottom: 10px;">
+   
 
-     <div class="container" id="pitchdeck" ng-init="trialActivated=false" ng-hide="trialActivated">
-      <div>&nbsp;</div>
-      <div class="add-bottom blank-state">
-          <div class="product-graphic" style="margin-top:20px;"> <img itemprop="image" class="img-responsive" src="https://s3.amazonaws.com/Store-Products/Rise-Vision/storage_image.png"> </div>
-          <div class="content-box-body ng-scope">
-              <div class="product-intro" style="margin-top:0;">
-                  <h1>Storage</h1>
-                  <p class="lead"><strong>Manage and deliver media to your digital signage displays, anywhere, anytime.</strong></p>
-                  <p class="lead">Free 30 days trial. No credit card required.</p>
-                  <p class="lead">$10 per Company per Month.</p>
-                  <button type="button" class="btn btn-hg btn-primary" ng-click="trialActivated=true">Start Your Free Trial</button>
-              </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div ng-show="trialActivated" style="margin-bottom:99px;">
-      <p class="product-graphic" style="width: 100%;height: 24px;margin-top:83px;">You haven't uploaded any files yet! </p>
-      <span> Select <b>Upload Files</b>,<b>Upload Folder</b>, or <b>Create Folder</b>.</span><br/><br/>
-      <div><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/slides.svg" width="140px" height="70px">
-      <span>You can select a Folder to show and update Images dynamically as you add/delete from that Folder.</span></div>
-      <div><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/noun_18307_cc.svg" width="60px" height="80px">
-      <span>You can also individual images to add and order them in your Playlist.</span></div>
-      </div>
-
-    </div>
-
-   <div class="add-top" ng-show="!EmptyState">
+   <div class="add-top">
      <div class="col-xs-6" style="padding:0">
       <ol class="breadcrumb" ng-init="revealCrumb=false" ng-hide="revealCrumb">
           <li class="active">My Storage</li>
@@ -88,13 +59,14 @@
       </ol>
     </div>
     <div class="col-xs-6">
-     <search-filter filter-config="filterConfig" search="search" do-search="search.doSearch" ng-show="trialActivated" style="display: inline-block"></search-filter>
+     <search-filter filter-config="filterConfig" search="search" do-search="search.doSearch" style="display: inline-block"></search-filter>
     </div>
    </div>
 
+   
 
      <!-- <p class="text-muted remove-bottom pull-left">Tip: You can drag and drop files here to upload them.</p> -->
-<div class="scrollable-list content-box" style="padding:4px;max-height:calc(100vh - 410px);width:100%" ng-hide="!gridView || EmptyState || revealCrumb" ng-show="!EmptyState">
+<div class="scrollable-list content-box" style="padding:4px;max-height:calc(100vh - 410px);width:100%" ng-hide="!gridView || revealCrumb">
     <ul class="list-unstyled pt-media-list">
      <!--  <li ng-click="selectFile('flowers_002.jpg')">
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
@@ -102,191 +74,191 @@
       </li> -->
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
-        <input type="checkbox" class="checkbox" />
+        <input type="radio" name="singleselect" class="checkbox" />
       </li>
       <li class="folder">
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/folder.png" ng-click="revealCrumb=true">
-        <input type="checkbox"  class="checkbox"/>
+       <!--  <input type="radio" name="singleselect"  class="checkbox"/> -->
         <span>Instagram Folder</span>
          <span class="hidden image-folder-info"> By selecting a Folder, the files within it will be shown and updated dynamically as you add/delete from that Folder. </span>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
-        <input type="checkbox" class="checkbox" />
+        <input type="radio" name="singleselect" class="checkbox" />
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li class="folder">
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/folder.png">
-        <input type="checkbox"  class="checkbox"/>
+        <!-- <input type="radio" name="singleselect"  class="checkbox"/> -->
         <span>My Flickr Pictures</span>
          <span class="hidden image-folder-info"> By selecting a Folder, the files within it will be shown and updated dynamically as you add/delete from that Folder. </span>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
-        <input type="checkbox" class="checkbox" />
+        <input type="radio" name="singleselect" class="checkbox" />
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
-        <input type="checkbox" class="checkbox" />
+        <input type="radio" name="singleselect" class="checkbox" />
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
-        <input type="checkbox" class="checkbox" />
+        <input type="radio" name="singleselect" class="checkbox" />
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
-        <input type="checkbox" class="checkbox" />
+        <input type="radio" name="singleselect" class="checkbox" />
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
-        <input type="checkbox" class="checkbox" />
+        <input type="radio" name="singleselect" class="checkbox" />
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
-        <input type="checkbox" class="checkbox" />
+        <input type="radio" name="singleselect" class="checkbox" />
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
-        <input type="checkbox" class="checkbox" />
+        <input type="radio" name="singleselect" class="checkbox" />
       </li>
        <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
-        <input type="checkbox" class="checkbox" />
+        <input type="radio" name="singleselect" class="checkbox" />
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
-        <input type="checkbox" class="checkbox" />
+        <input type="radio" name="singleselect" class="checkbox" />
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
-        <input type="checkbox" class="checkbox" />
+        <input type="radio" name="singleselect" class="checkbox" />
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
-        <input type="checkbox" class="checkbox" />
+        <input type="radio" name="singleselect" class="checkbox" />
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
-        <input type="checkbox" class="checkbox" />
+        <input type="radio" name="singleselect" class="checkbox" />
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
-        <input type="checkbox" class="checkbox" />
+        <input type="radio" name="singleselect" class="checkbox" />
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
-        <input type="checkbox" class="checkbox" />
+        <input type="radio" name="singleselect" class="checkbox" />
       </li>
     </ul>
 </div>
@@ -295,26 +267,26 @@
      
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
-        <input type="checkbox"  class="checkbox"/>
+        <input type="radio" name="singleselect"  class="checkbox"/>
       </li>
       <li>
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
-        <input type="checkbox" class="checkbox" />
+        <input type="radio" name="singleselect" class="checkbox" />
       </li>
     </ul>
 </div>
 
 <div class="scrollable-list content-box" style="padding:4px;max-height:calc(100vh - 410px);width:100%" ng-show="listView">
-<table class="table-2 table-hover table-selector multiple-selector">
+<table class="table-2 table-hover table-selector single-selector">
   <thead>
     <tr>
       <th class="col-sm-6">
-        <input type="checkbox" class="add-right ng-pristine ng-untouched ng-valid" ng-model="selectAll">
-        <label ng-click="selectAllCheckboxes(query)"></label>
+        
+       
         <a href="" ng-click="orderByAttribute = fileNameOrderFunction; reverseSort = !reverseSort">
           <span translate="common.file-name" class="ng-scope">Name</span>
           <span>
@@ -385,7 +357,7 @@
             <span class="ng-binding"> 1920x1080 </span>
         </td>
     </tr>
-    <tr class="clickable-row ng-scope">
+    <tr class="no-select-row ng-scope">
         <td colspan="5">
             <span class="folder ng-binding">Instagram Folder/</span>
         </td>
@@ -453,7 +425,7 @@
             <span class="ng-binding"> 1920x1080 </span>
         </td>
     </tr>
-      <tr class="clickable-row ng-scope" ng-click="fileClick(file);">
+      <tr class="no-select-row ng-scope" ng-click="fileClick(file);">
         <td colspan="5">
             <span class="folder ng-binding">Instagram Folder/</span>
         </td>
@@ -483,7 +455,7 @@
 
 
 
-    <div class="add-top text-right" ng-show="trialActivated">
+    <div class="add-top text-right" >
       <button class="btn btn-primary disabled" id="AddButton" ng-click="selectFile('flower_003.jpg')" >Add Selection <i class="fa fa-plus icon-right"></i></button>
       <button class="btn btn-default" ng-click="dismiss()">
         {{'common.cancel' | translate}} <i class="fa fa-white fa-times icon-right"></i>
@@ -491,16 +463,7 @@
     </div>
   </div>
   
-  <div ng-show="!selected">
-    <label class="control-label">URL</label>
-    <div class="input-group">
-      <input type="text" name="" class="form-control">
-      <span class="input-group-addon clickable">
-        Add
-      </span>
-    </div>
-   
-  </div>
+ 
 
 
 </div>
