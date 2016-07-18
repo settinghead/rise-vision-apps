@@ -44,7 +44,6 @@
     "angular-touch": "^1.4.1",
     "angular-mocks": "~1.3.0",
     "angular-sanitize": "~1.3.0",
-    "rv-common-style": "feature/button-layout",
-    "protip": "^1.4.13"
+    "rv-common-style": "feature/button-layout"
   }
 }
