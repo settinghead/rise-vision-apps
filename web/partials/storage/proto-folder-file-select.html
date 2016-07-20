@@ -6,7 +6,7 @@
 
   <h3 class="modal-title">Select a Folder of Image(s)</h3>
 </div>
-<div class="modal-body storage-full" >
+<div class="modal-body storage-full" ng-controller="modalCtrl">
 
   <!-- <div class="btn-group btn-group-justified half-bottom">
     <a class="btn btn-default" ng-class="{active: selected}" ng-init="selected=true" ng-click="selected=true" type="button" >
@@ -86,9 +86,9 @@
       </li>
       <li class="folder">
          <img class="" src="https://s3.amazonaws.com/ux-design/sprint_prototype/folder.png" ng-click="revealCrumb=true">
-         <input type="radio" name="singleselect" class="checkbox" />
+         <input type="checkbox" name="singleselect" class="checkbox soloselect" />
         <span>Instagram Folder</span>
-         <span class="hidden image-folder-info"> By selecting a Folder, the files within it will be shown and updated dynamically as you add/delete from that Folder. </span>
+         <span class="hidden image-folder-info"> Select a Folder to show and update Images and Videos as you add or remove them from the Folder. </span>
       </li>
       <li>
          <img class="disabled" src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
@@ -104,9 +104,9 @@
       </li>
       <li class="folder">
          <img class="" src="https://s3.amazonaws.com/ux-design/sprint_prototype/folder.png">
-          <input type="radio" name="singleselect" class="checkbox" />
+          <input type="checkbox" name="singleselect" class="checkbox soloselect" />
         <span>My Flickr Pictures</span>
-         <span class="hidden image-folder-info"> By selecting a Folder, the files within it will be shown and updated dynamically as you add/delete from that Folder. </span>
+         <span class="hidden image-folder-info"> Select a Folder to show and update Images and Videos as you add or remove them from the Folder. </span>
       </li>
       <li>
          <img class="disabled" src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
@@ -363,7 +363,7 @@
     </tr>
     <tr class="info-row no-select-row disabled-row"> 
     <td colspan="5"> 
-    <span class=" ng-binding"> By selecting a Folder, the files within it will be shown and updated dynamically as you add/delete from that Folder. </span> 
+    <span class=" ng-binding"> Select a Folder to show and update Images and Videos as you add or remove them from the Folder. </span> 
     </td> 
     </tr>
 

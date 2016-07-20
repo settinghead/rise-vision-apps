@@ -1,21 +1,44 @@
-<div class="editor-playlist scrollable-list">
+<div class="editor-playlist scrollable-list protip-target">
  
- <h4 translate class="add-top" ng-show="designMode && (!fullArtboard || placeholderFactory.placeholder)"> Your Playlists </h4>
-
-  <div class="editor-playlist-item clickable placeholderFromSideBar" ng-repeat="placeholder in factory.getPlaceholders() track by $index">
+<!--  <h4 translate class="add-top" ng-show="designMode && (!fullArtboard || placeholderFactory.placeholder)"> Your Playlists </h4>
+ -->
+ <hr>
+  <div id="editorPlaylistItems" class="editor-playlist-item clickable placeholderFromSideBar protip" data-pt-title="Click to change Images, Video, Text, and More" data-pt-position="bottom" data-pt-width="600" data-pt-trigger="hover" data-pt-offset-top="15" data-pt-auto-hide="500000" data-pt-animate="bounceIn" ng-repeat="placeholder in factory.getPlaceholders() track by $index">
     <div class="pull-right">
       <button class="btn btn-xs btn-default" id="duplicateButton" ng-click="factory.duplicatePlaceholder(placeholder)"><i class="fa fa-copy"></i></button>
       <button class="btn btn-xs btn-default" id="removeButton" ng-click="remove(placeholder)"><i class="fa fa-trash-o"></i></button>
     </div>
-    <div id="manageLink" ng-click="manage(placeholder)">
+    <div id="manageLink" ng-click="manage(placeholder)" >
       <p class="remove-bottom placeholder-item-name">{{placeholder.id}}</p>
     </div>
   </div><!--editor-playlist-item-->
+
+  <script>
+
+      $.protip();
+
+      // var em = $('#editorPlaylistItems');
+
+      // em.hover(function() {
+      //     em.protipHide();
+      // });
+
+      // em.protipHide();
+
+      // $('.workspace-sidebar').mouseenter(function() {
+      //    em.protipShow();
+      //    });
+      // $('.workspace-sidebar').mouseleave(function() {
+      //    em.protipHide();
+      //    });
+  </script>
+
+
   <div ng-hide="factory.getPlaceholders().length">
     <div class="content-box-body">
-      <p class="text-muted text-center remove-bottom" >You haven't added any Playlists to your Presentation yet.</p>
+      <p class="text-muted text-center remove-bottom"> Click <b>Add Placeholder</b> to add Images, Video, Text, and More </p>
       <br/>
-     <!--  <p class="text-muted text-center remove-bottom" >Select <b>Add Playlist </b> above to bring Images, Videos and Widgets into this Presentation!</p> -->
+     <!--  <p class="text-muted text-center remove-bottom" >Select <b>Add Placeholder </b> above to bring Images, Videos and Widgets into this Presentation!</p> -->
     </div>
   </div>
 </div>
