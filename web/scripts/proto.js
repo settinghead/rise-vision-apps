@@ -4,7 +4,7 @@ $(document).on("click", "body", function() {
                 event.stopPropagation();
             });
 
-            $('.singleitem input:checkbox').change(function() {
+            $('.single-item input:checkbox').change(function() {
                 if ($(this).is(":checked")) {
                     $(this).prev().addClass("selectedBorder", 100, "linear");
                 } else {

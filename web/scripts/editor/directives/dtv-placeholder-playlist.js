@@ -52,7 +52,7 @@ angular.module('risevision.editor.directives')
 
           $scope.addItemShortcut = function(type) {
             var modalInstance = $modal.open({
-              templateUrl: 'partials/editor/file-selector-modal.html',
+              templateUrl: 'partials/editor/proto-new-file-select.html',
               size: 'lg',
               controller: 'FileSelectorModal'
             });

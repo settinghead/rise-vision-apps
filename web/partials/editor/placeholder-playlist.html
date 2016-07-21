@@ -42,7 +42,7 @@
 
     <div class="actions">
 
-      <button class="btn btn-xs btn-default editPlaylistItem" ng-click="playlistItemFactory.loadClassicFileSelector()"><i class="fa fa-pencil"></i></button>
+      <button class="btn btn-xs btn-default editPlaylistItem" ng-click="playlistItemFactory.loadClassicFileSelector()"><i class="fa fa-cog"></i></button>
       <button class="btn btn-xs btn-default" id="duplicateButton" ng-click="factory.duplicateItem(item)"><i class="fa fa-copy"></i></button>
       <button class="btn btn-xs btn-default" id="removeButton" ng-click="remove(item)"><i class="fa fa-trash-o"></i></button>
     </div>
@@ -51,7 +51,7 @@
       <div class="nameContainer" ng-show="item.type === 'widget' && (item.objectReference || item.settingsUrl)">
         
           <p><span>{{item.name}}</span> </p>
-          <a href="#" ><p><span class="playlist-item-name" ng-click="playlistItemFactory.edit(item)"> Duration: 10 sec </span></p>  </a>
+          <a href="#" ><p><span class="playlist-item-name" ng-click="playlistItemFactory.edit(item)"> Duration: 10 sec </span><i class="fa fa-pencil icon-right"></i></p>  </a>
       
       </div>
       <div  class="nameContainer" ng-hide="item.type === 'widget' && (item.objectReference || item.settingsUrl)" >

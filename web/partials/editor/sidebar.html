@@ -5,7 +5,7 @@
         <i class="fa fa-angle-left icon-left"></i>
         {{'common.back' | translate}}
       </a>
-      <h4>Playlist 1</h4>
+      <h4>Playlist1</h4>
       <div class="btn-group btn-group-justified half-bottom" role="group" aria-label="...">
         <a id="editPlaylistButton" href="" class="btn btn-default" ng-class="{'active' : showPlaylist}" ng-click="showPlaylist=true" >{{'editor-app.workspace.sidebar.edit.playlist' | translate}}</a>
         <a id="editPropertiesButton" href="" class="btn btn-default" ng-class="{'active' : !showPlaylist}" ng-click="showPlaylist=false" >{{'editor-app.workspace.sidebar.edit.properties' |translate}}</a>        
@@ -33,7 +33,7 @@
       var el = $('#addPlaceholderButton');
 
       el.hover(function() {
-          el.protipHide();
+          el.protipShow();
       });
 
       el.protipHide();
