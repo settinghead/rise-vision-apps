@@ -10,35 +10,13 @@
     </div>
     <div id="manageLink" ng-click="manage(placeholder)" >
       <p class="remove-bottom placeholder-item-name">{{placeholder.id}}</p>
+      <p class="remove-bottom ph-amount">4 Items</p>
     </div>
   </div><!--editor-playlist-item-->
-
-  <script>
-
-      $.protip();
-
-      // var em = $('#editorPlaylistItems');
-
-      // em.hover(function() {
-      //     em.protipHide();
-      // });
-
-      // em.protipHide();
-
-      // $('.workspace-sidebar').mouseenter(function() {
-      //    em.protipShow();
-      //    });
-      // $('.workspace-sidebar').mouseleave(function() {
-      //    em.protipHide();
-      //    });
-  </script>
-
 
   <div ng-hide="factory.getPlaceholders().length">
     <div class="content-box-body">
       <p class="text-muted text-center remove-bottom"> Click <b>Add Placeholder</b> to add Images, Video, Text, and More </p>
-      <br/>
-     <!--  <p class="text-muted text-center remove-bottom" >Select <b>Add Placeholder </b> above to bring Images, Videos and Widgets into this Presentation!</p> -->
     </div>
   </div>
 </div>

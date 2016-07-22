@@ -18,9 +18,16 @@ angular.module('risevision.editor.controllers')
       $scope.selectFile = function(name) {
         var files = [
           {
-            name: name
+            name: 'Rose.jpg'
+          },
+          {
+            name: 'Petunia.jpg'
+          },
+          {
+            name: 'Daffodil.jpg'
           }
         ];
+        console.log(files);
         $scope.$emit("filesPicked", files);
       }
     }
