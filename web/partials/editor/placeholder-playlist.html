@@ -32,21 +32,24 @@
         </div> -->
         <!--arrows-->
         <div class="actions">
-            <button class="btn btn-xs btn-default editPlaylistItem" ng-click="playlistItemFactory.loadClassicFileSelector()" popover-template="'popover.html'">
+            <button type="button" class="btn btn-xs btn-default editPlaylistItem" ng-click="playlistItemFactory.loadClassicFileSelector()" title="Settings" data-toggle="tooltip" data-placement="left" tooltip>
             <i class="fa fa-cog"></i>
             </button>
-            <button class="btn btn-xs btn-default" id="duplicateButton" ng-click="factory.duplicateItem(item)"><i class="fa fa-copy"></i></button>
-            <button class="btn btn-xs btn-default" id="removeButton" ng-click="remove(item)"><i class="fa fa-trash-o"></i></button>
+            <button class="btn btn-xs btn-default" id="duplicateButton" ng-click="factory.duplicateItem(item)" title="Duplicate" data-toggle="tooltip" data-placement="left" tooltip><i class="fa fa-copy"></i></button>
+            <button class="btn btn-xs btn-default" id="removeButton" ng-click="remove(item)" title="Delete" data-toggle="tooltip" data-placement="left" tooltip><i class="fa fa-trash-o"></i></button>
         </div>
         <div>
             <div class="nameContainer" ng-show="item.type === 'widget' && (item.objectReference || item.settingsUrl)">
-                <p><span>{{item.name}}</span> </p>
-                <a href="#">
+                <p>
+                    <!-- <i class="item-type-icon fa fa-video-camera"></i> -->
+                    <span style="width: 16px;height: 16px;display: inline-block;top: 3px;position: relative;">
+                    <svg-icon p="riseWidgetImage"></svg-icon></span>
+                    <span>{{item.name}}</span>
+                </p>
+                <a href="#" class="btn-link">
                     <p>
-                    <span class="playlist-item-name" ng-click="playlistItemFactory.edit(item)"> Duration: 
+                    <span class="playlist-item-name" ng-click="playlistItemFactory.edit(item)"> Duration: </span>
                     <span class="playlist-item-duration"> val </span>
-                    </span>
-                    <i class="fa fa-pencil icon-right"></i>
                     </p>
                 </a>
             </div>
@@ -54,7 +57,7 @@
                 <p class="playlist-item-name">{{item.name}}</p>
             </div>
             <p class="text-small text-muted remove-bottom {{item.subscriptionStatus|subscriptionStatusClass}}">
-                <span class="playlist-item-status">Free</span>
+                <span class="playlist-item-status">valStat</span>
             </p>
         </div>
         <!-- Empty State -->
