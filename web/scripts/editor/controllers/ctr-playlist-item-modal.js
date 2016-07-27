@@ -4,10 +4,12 @@ angular.module('risevision.editor.controllers')
   .controller('PlaylistItemModalController', ['$scope',
     'placeholderPlaylistFactory', 'widgetModalFactory', 'gadgetFactory',
     '$modalInstance', 'placeholderFactory', 'item', 'editorFactory',
-    'userState', 'RVA_URL', 'showWidgetModal', 'gadgetsApi', 'widget','$timeout',
+    'userState', 'RVA_URL', 'showWidgetModal', 'gadgetsApi', 'widget',
+    '$timeout',
     function ($scope, placeholderPlaylistFactory, widgetModalFactory,
       gadgetFactory, $modalInstance, placeholderFactory,
-      item, editorFactory, userState, RVA_URL, showWidgetModal, gadgetsApi, widget,$timeout) {
+      item, editorFactory, userState, RVA_URL, showWidgetModal, gadgetsApi,
+      widget, $timeout) {
       $scope.PREVIOUS_EDITOR_URL = RVA_URL + '/#/PRESENTATION_MANAGE' + ((
           editorFactory.presentation.id) ? '/id=' + editorFactory.presentation
         .id : '') + '?cid=' + userState.getSelectedCompanyId();
@@ -60,8 +62,7 @@ angular.module('risevision.editor.controllers')
 
       };
 
-      var saveSettings = function (data) {
-      };
+      var saveSettings = function (data) {};
 
       var closeSettings = function () {
         $modalInstance.dismiss('cancel');

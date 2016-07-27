@@ -412,7 +412,7 @@ angular.module('risevision.editor.services')
           var found = false;
           for (var j = 0; j < placeholders.length; j++) {
             if (placeholders[j] !== placeholder && !placeholders[j].deleted &&
-              placeholders[j].id === (idPrefix + (i + 1) )) {
+              placeholders[j].id === (idPrefix + (i + 1))) {
               found = true;
               break;
             }

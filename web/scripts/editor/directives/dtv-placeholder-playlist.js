@@ -50,7 +50,7 @@ angular.module('risevision.editor.directives')
             });
           };
 
-          $scope.addItemShortcut = function(type) {
+          $scope.addItemShortcut = function (type) {
             var modalInstance = $modal.open({
               templateUrl: 'partials/editor/proto-new-file-select.html',
               size: 'lg',
@@ -62,15 +62,18 @@ angular.module('risevision.editor.directives')
                 return;
               }
               factory.newCopyOf(templateId);
-            });            }
+            });
+          }
 
-          $scope.addTextShortcut = function() {
+          $scope.addTextShortcut = function () {
             var item = _newPlaylistItem();
             item.type = 'widget';
             item.name = 'Widget from URL';
             item.objectReference = "64cc543c-c2c6-49ab-a4e9-40ceba48a253";
-            item.objectData = "http://s3.amazonaws.com/widget-text-test/stage-0/1.0.0/dist/widget.html";
-            item.settingsUrl = "https://s3.amazonaws.com/widget-text-test/stage-0/1.0.0/dist/settings.html";
+            item.objectData =
+              "http://s3.amazonaws.com/widget-text-test/stage-0/1.0.0/dist/widget.html";
+            item.settingsUrl =
+              "https://s3.amazonaws.com/widget-text-test/stage-0/1.0.0/dist/settings.html";
             playlistItemFactory.edit(item, true);
           }
 

@@ -133,7 +133,7 @@ angular.module('risevision.editor.services')
           // for unit test purposes
           factory.canceled = true;
         });
-        
+
       };
 
       return factory;

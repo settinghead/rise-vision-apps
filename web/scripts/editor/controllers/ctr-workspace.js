@@ -2,10 +2,12 @@
 
 angular.module('risevision.editor.controllers')
   .controller('WorkspaceController', ['$scope', 'editorFactory',
-    'placeholderFactory', 'placeholdersFactory', 'userState', '$modal', '$templateCache',
+    'placeholderFactory', 'placeholdersFactory', 'userState', '$modal',
+    '$templateCache',
     '$location', '$stateParams', '$window', 'RVA_URL', '$timeout', '$state',
     '$filter',
-    function ($scope, editorFactory, placeholderFactory, placeholdersFactory, userState, $modal,
+    function ($scope, editorFactory, placeholderFactory, placeholdersFactory,
+      userState, $modal,
       $templateCache, $location, $stateParams, $window, RVA_URL, $timeout,
       $state, $filter) {
       $scope.factory = editorFactory;
@@ -17,7 +19,8 @@ angular.module('risevision.editor.controllers')
 
       var _initializing = true;
 
-      if (!editorFactory.presentation.id && !placeholdersFactory.getPlaceholders().length) {
+      if (!editorFactory.presentation.id && !placeholdersFactory.getPlaceholders()
+        .length) {
         // add a placeholder immediately
         placeholdersFactory.addNewPlaceholder();
       }

@@ -32,30 +32,29 @@
         </div> -->
         <!--arrows-->
         <div class="actions">
-            <button type="button" class="btn btn-xs btn-default editPlaylistItem" ng-click="playlistItemFactory.loadClassicFileSelector()" title="Settings" data-toggle="tooltip" data-placement="left" tooltip>
-            <i class="fa fa-cog"></i>
+            <button type="button" class="btn btn-xs btn-default ellipsis editPlaylistItem" ng-click="playlistItemFactory.loadClassicFileSelector()" title="Settings" data-toggle="tooltip" data-placement="top" style="width:177px;" tooltip>
+            <!-- <i class="fa fa-cog"></i> -->
+             <span style="width: 27px;height: 19px;">
+                    <svg-icon p="riseWidgetImage"></svg-icon>
+                    <!-- <svg-icon p="riseWidgetVideo"></svg-icon>
+                    <svg-icon p="riseWidgetText"></svg-icon>
+                    <svg-icon p="riseWidgetMore"></svg-icon> -->
+            </span>
+            <span>{{item.name}}</span>
             </button>
-            <button class="btn btn-xs btn-default" id="duplicateButton" ng-click="factory.duplicateItem(item)" title="Duplicate" data-toggle="tooltip" data-placement="left" tooltip><i class="fa fa-copy"></i></button>
-            <button class="btn btn-xs btn-default" id="removeButton" ng-click="remove(item)" title="Delete" data-toggle="tooltip" data-placement="left" tooltip><i class="fa fa-trash-o"></i></button>
+            <button class="btn btn-xs btn-default" id="duplicateButton" ng-click="factory.duplicateItem(item)" title="Duplicate" data-toggle="tooltip" data-placement="top" tooltip><i class="fa fa-copy"></i></button>
+            <button class="btn btn-xs btn-default" id="removeButton" ng-click="remove(item)" title="Delete" data-toggle="tooltip" data-placement="top" tooltip><i class="fa fa-trash-o"></i></button>
         </div>
         <div>
             <div class="nameContainer" ng-show="item.type === 'widget' && (item.objectReference || item.settingsUrl)">
-                <p>
-                    <!-- <i class="item-type-icon fa fa-video-camera"></i> -->
-                    <span style="width: 16px;height: 16px;display: inline-block;top: 3px;position: relative;">
-                    <svg-icon p="riseWidgetImage"></svg-icon></span>
-                    <span>{{item.name}}</span>
-                </p>
-                <a href="#" class="btn-link">
+                <a href="#" class="btn-link" ng-click="playlistItemFactory.edit(item)">
                     <p>
-                    <span class="playlist-item-name" ng-click="playlistItemFactory.edit(item)"> Duration: </span>
+                    <span class="playlist-item-name"> Duration: </span>
                     <span class="playlist-item-duration"> val </span>
                     </p>
                 </a>
             </div>
-            <div class="nameContainer" ng-hide="item.type === 'widget' && (item.objectReference || item.settingsUrl)">
-                <p class="playlist-item-name">{{item.name}}</p>
-            </div>
+           
             <p class="text-small text-muted remove-bottom {{item.subscriptionStatus|subscriptionStatusClass}}">
                 <span class="playlist-item-status">valStat</span>
             </p>
