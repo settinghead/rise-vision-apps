@@ -33,65 +33,78 @@ $(document).on("click", "body", function () {
   });
 
 
-  // SET UP ARRAYS
-  var durationArray = [
+
+
+
+// SET UP ARRAYS
+var durationArray = [
     '10 Seconds',
     '180 Seconds',
     'Plays Until Done'
-  ]
-  var statusArray = [
-    '<a class="text-danger" ng-click="playlistItemFactory.edit(item)"  >Expired<span class="btn btn-primary btn-xs icon-right">BUY</span></a>',
-    '<a class="text-danger" ng-click="playlistItemFactory.edit(item)" >Cancelled<span class="btn btn-primary btn-xs icon-right">BUY</span></a>',
-    '<a class="text-danger" ng-click="playlistItemFactory.edit(item)" >3 Days Left On Trial<span class="btn btn-primary btn-xs icon-right">BUY</span></a>',
-    ' ',
-    ' ',
-    ' ',
-    ' '
-  ]
-// HIDE STATUS LINES IF EMPTY
-function hideDurationsIfStat() {
-   $('.playlist-item-status').each(function() {
-           if ( $(this).children().length < 1) {
-                // IF NO STAT, SHOW DURATION
-                $(this).closest('.editor-playlist-item').css('border' , '0');
-                $(this).closest('.editor-playlist-item').find('.playlist-item-name').closest('p').show();
-           }
-           else {
-                //IF HAS STAT, HIDE DURATION
-                 $(this).closest('.editor-playlist-item').find('.playlist-item-name').closest('p').hide();
-                 $(this).closest('.editor-playlist-item').css('border' , '1px solid red');
-           }
-        });
-}
-
-  function CreatePlaylistSet(cycles) {
-    for (i = 0; i < cycles; i++) {
-      $('.editor-playlist-item').each(function () {
-        var randomNumber = Math.floor(Math.random() * durationArray.length);
-        $('.playlist-item-duration', this).text(durationArray[randomNumber]);
-        randomNumber = '';
-      });
-      $('.editor-playlist-item').each(function () {
-        var statusRandomNo = Math.floor(Math.random() * statusArray.length);
-        $('.playlist-item-status', this).html(statusArray[statusRandomNo]);
-        statusRandomNo = '';
-        hideDurationsIfStat();
-      });
-    }
-  }
-
-
-
-  // OVERWRITE SOME RANDOM ICONS
-
-
-  // ASSIGN RANDOM PH ITEM AMOUNTS
+]
+var statusArray = [
+        '<a class="text-danger" ng-click="playlistItemFactory.edit(item)"> Expired </a>',
+        '<a class="text-danger" ng-click="playlistItemFactory.edit(item)"> Cancelled </a>',
+        '<a class="text-danger" ng-click="playlistItemFactory.edit(item)"> 3 Days Left On Trial </a>',
+        ' ',
+        ' ',
+        ' ',
+        ' '
+]
   var itemsAmountArray = [
     '4 Items',
     '18 Items',
     'Empty'
-  ]
+]
 
+// HIDE STATUS LINES IF EMPTY
+function hideDurationsIfStat() {
+    $('.playlist-item-status').each(function() {
+        if ($(this).children().length < 1) {
+            // IF NO STAT, SHOW DURATION
+            // $(this).closest('.editor-playlist-item').css('border' , '0');
+            $(this).closest('.editor-playlist-item').find('.playlist-item-name').closest('a').show();
+        } else {
+            //IF HAS STAT, HIDE DURATION
+            $(this).closest('.editor-playlist-item').find('.playlist-item-name').closest('a').hide();
+            // $(this).closest('.editor-playlist-item').css('border' , '1px solid red');
+        }
+    });
+}
+
+//CREATE RANDOM PLAYLIST ITEMS
+function CreatePlaylistSet(cycles) {
+    for (i = 0; i < cycles; i++) {
+        $('.editor-playlist-item').each(function() {
+            var randomNumber = Math.floor(Math.random() * durationArray.length);
+            $('.playlist-item-duration', this).text(durationArray[randomNumber]);
+            randomNumber = '';
+        });
+        $('.editor-playlist-item').each(function() {
+            var statusRandomNo = Math.floor(Math.random() * statusArray.length);
+            $('.playlist-item-status', this).html(statusArray[statusRandomNo]);
+            statusRandomNo = '';
+            hideDurationsIfStat();
+            showRandomSVG();
+        });
+    }
+}
+
+
+// SHOW ONE RANDOM ICON PER PLAYLIST ITEM
+function showRandomSVG() {
+   $('.editor-playlist-item').each(function() {
+            
+            var selectedIconArray = $(this).find('svg-icon'); 
+            var randomizedIcon = Math.floor(Math.random() * selectedIconArray.length);
+
+            $( selectedIconArray ).hide();
+            $( selectedIconArray[randomizedIcon] ).show();
+            selectedIconArray = '';
+     });
+}
+
+// CREATE RANDOM PH ITEM AMOUNTS
   function CreateItemAmountsSet() {
     $('.ph-amount').each(function () {
       var rand = Math.floor((Math.random() * 3) + 1);
@@ -100,14 +113,12 @@ function hideDurationsIfStat() {
   }
 
 
-
-  // TRIGGER BUTTONS
+// TRIGGER BUTTONS
   $('#addPlaceholderButton').click(function () {
     CreateItemAmountsSet();
   });
   $('#AddButton').click(function () {
-    CreatePlaylistSet(9);
-   
+    CreatePlaylistSet(1);
   });
 
 
