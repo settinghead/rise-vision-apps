@@ -38,9 +38,9 @@ $(document).on("click", "body", function () {
 
 // SET UP ARRAYS
 var durationArray = [
-    '10 Seconds',
-    '180 Seconds',
-    'Plays Until Done'
+    '10s',
+    '180s',
+    'PUD'
 ]
 var statusArray = [
         '<a class="text-danger" ng-click="playlistItemFactory.edit(item)"> Expired </a>',
@@ -51,11 +51,12 @@ var statusArray = [
         ' ',
         ' '
 ]
-  var itemsAmountArray = [
+var itemsAmountArray = [
     '4 Items',
     '18 Items',
     'Empty'
 ]
+
 
 // HIDE STATUS LINES IF EMPTY
 function hideDurationsIfStat() {

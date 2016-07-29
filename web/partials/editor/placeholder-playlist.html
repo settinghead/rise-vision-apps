@@ -27,16 +27,20 @@
         </div>
 
         <div class="actions">
-            <button type="button" class="btn btn-xs btn-default editPlaylistItem" ng-click="playlistItemFactory.loadClassicFileSelector()" title="Settings" data-toggle="tooltip" data-placement="left" tooltip>
-            <i class="fa fa-cog"></i>
+            <button type="button" class="btn btn-xs btn-default editPlaylistItem" 
+            ng-click="playlistItemFactory.edit(item)" title="Duration: Plays Until Done" data-toggle="tooltip" data-placement="left" tooltip>
+            <i class="fa fa-clock-o icon-sm-left"></i><span class="playlist-item-duration" style="color:green">val </span>
             </button>
             <button class="btn btn-xs btn-default" id="duplicateButton" ng-click="factory.duplicateItem(item)" title="Duplicate" data-toggle="tooltip" data-placement="left" tooltip><i class="fa fa-copy"></i></button>
             <button class="btn btn-xs btn-default" id="removeButton" ng-click="remove(item)" title="Delete" data-toggle="tooltip" data-placement="left" tooltip><i class="fa fa-trash-o"></i></button>
         </div>
-        <div>
-            <div class="nameContainer" ng-show="item.type === 'widget' && (item.objectReference || item.settingsUrl)">
+
+            <!-- //MAKE CLASS -->
+            <div class="nameContainer" style="margin-top: 6px; height: 45px; display: flex; flex-direction: column; align-items: baseline; justify-content: center;" ng-show="item.type === 'widget' && (item.objectReference || item.settingsUrl)">
+                    
                     <!-- //MAKE CLASS -->
-                    <span style="width: 16px;height: 16px;display: inline-block;top: -1px;position: relative;">
+                    <p style="margin-top:5px;" ng-click="playlistItemFactory.loadClassicFileSelector()" >
+                    <span style="width: 16px;height: 16px;display: inline-block;top: -3px;position: relative;">
                         <svg-icon p="riseWidgetImage"></svg-icon>
                         <svg-icon p="riseWidgetVideo"></svg-icon>
                         <svg-icon p="riseWidgetText"></svg-icon>
@@ -44,19 +48,25 @@
                         <svg-icon p="riseWidgetImageMulti"></svg-icon>
                         <svg-icon p="riseWidgetFolder"></svg-icon>
                     </span>
+
                     <!-- //MAKE CLASS -->
                     <span style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width: 125px;display: inline-block;">{{item.name}}
                     </span>
-               <!-- //MAKE CLASS -->
-                <a href="#" class="btn-link" style="display:inline-block;" >
+                   </p>
+            
+              <!--   <a href="#" class="btn-link" style="display:inline-block;" >
                     <span class="playlist-item-name" ng-click="playlistItemFactory.edit(item)"> Duration: </span>
                     <span class="playlist-item-duration"> val </span>
-                </a>
-            </div>
-            <p class="text-small text-muted remove-bottom {{item.subscriptionStatus|subscriptionStatusClass}}">
+                </a> -->
+
+                <!-- //MAKE CLASS -->
+                 <p style="position: relative; top: -7px;">
+                 <span class="text-small text-muted remove-bottom {{item.subscriptionStatus|subscriptionStatusClass}}">
                 <span class="playlist-item-status">valStat</span>
-            </p>
-        </div>
+                </span>
+                </p>
+            </div>
+           
         <!-- Empty State -->
         <div ng-hide="factory.getItems().length">
             <p class="text-muted text-center remove-bottom"> Click Image, Video, Text or More to add to this Playlist </p>
