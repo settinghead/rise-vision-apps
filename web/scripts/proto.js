@@ -43,9 +43,9 @@ var durationArray = [
     'PUD'
 ]
 var statusArray = [
-        '<a class="text-danger" ng-click="playlistItemFactory.edit(item)"> Expired </a>',
-        '<a class="text-danger" ng-click="playlistItemFactory.edit(item)"> Cancelled </a>',
-        '<a class="text-danger" ng-click="playlistItemFactory.edit(item)"> 3 Days Left On Trial </a>',
+        '<a class="text-danger"> Expired </a>',
+        '<a class="text-danger"> Cancelled </a>',
+        '<a class="text-danger"> 3 Days Left On Trial </a>',
         ' ',
         ' ',
         ' ',

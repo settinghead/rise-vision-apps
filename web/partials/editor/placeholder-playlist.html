@@ -1,11 +1,10 @@
-</style>
 <div class="btn-group btn-group-justified">
     <a href="#" class="btn btn-default" ng-click="addItemShortcut('image')">
         <svg-icon p="riseWidgetImageMulti"></svg-icon>
         <span>Images</span>
     </a>
     <a href="#" class="btn btn-default" ng-click="addItemShortcut('video')">
-         <svg-icon p="riseWidgetVideo"></svg-icon>
+        <svg-icon p="riseWidgetVideo"></svg-icon>
         <span>Video</span>
     </a>
     <a href="#" class="btn btn-default" ng-click="addTextShortcut()">
@@ -17,56 +16,37 @@
         <span>More</span>
     </a>
 </div>
-
 <div id="listWithHandle" class="editor-playlist scrollable-list add-top">
     <!-- Item Playlist -->
     <div class="editor-playlist-item" ng-repeat="item in factory.getItems() track by $index" ng-show="factory.getItems().length">
-       <div class="arrows">
-        <i class="fa fa-grip-large fa-rotate-90">
+        <div class="arrows">
+            <i class="fa fa-grip-large fa-rotate-90">
         </i>
         </div>
-
         <div class="actions">
-            <button type="button" class="btn btn-xs btn-default editPlaylistItem" 
-            ng-click="playlistItemFactory.edit(item)" title="Duration: Plays Until Done" data-toggle="tooltip" data-placement="left" tooltip>
-            <i class="fa fa-clock-o icon-sm-left"></i><span class="playlist-item-duration" style="color:green">val </span>
+            <button type="button" class="btn btn-xs btn-default editPlaylistItem" ng-click="playlistItemFactory.edit(item)" title="Duration: Plays Until Done" data-toggle="tooltip" data-placement="left" tooltip>
+                <i class="fa fa-clock-o icon-sm-left"></i><span class="playlist-item-duration">val </span>
             </button>
             <button class="btn btn-xs btn-default" id="duplicateButton" ng-click="factory.duplicateItem(item)" title="Duplicate" data-toggle="tooltip" data-placement="left" tooltip><i class="fa fa-copy"></i></button>
             <button class="btn btn-xs btn-default" id="removeButton" ng-click="remove(item)" title="Delete" data-toggle="tooltip" data-placement="left" tooltip><i class="fa fa-trash-o"></i></button>
         </div>
-
-            <!-- //MAKE CLASS -->
-            <div class="nameContainer" style="margin-top: 6px; height: 45px; display: flex; flex-direction: column; align-items: baseline; justify-content: center;" ng-show="item.type === 'widget' && (item.objectReference || item.settingsUrl)">
-                    
-                    <!-- //MAKE CLASS -->
-                    <p style="margin-top:5px;" ng-click="playlistItemFactory.loadClassicFileSelector()" >
-                    <span style="width: 16px;height: 16px;display: inline-block;top: -3px;position: relative;">
+        <div class="name-container" ng-show="item.type === 'widget' && (item.objectReference || item.settingsUrl)">
+            <p ng-click="playlistItemFactory.loadClassicFileSelector()">
+                <span>
                         <svg-icon p="riseWidgetImage"></svg-icon>
                         <svg-icon p="riseWidgetVideo"></svg-icon>
                         <svg-icon p="riseWidgetText"></svg-icon>
                         <svg-icon p="riseWidgetMore"></svg-icon>
-                        <svg-icon p="riseWidgetImageMulti"></svg-icon>
                         <svg-icon p="riseWidgetFolder"></svg-icon>
                     </span>
-
-                    <!-- //MAKE CLASS -->
-                    <span style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width: 125px;display: inline-block;">{{item.name}}
-                    </span>
-                   </p>
-            
-              <!--   <a href="#" class="btn-link" style="display:inline-block;" >
-                    <span class="playlist-item-name" ng-click="playlistItemFactory.edit(item)"> Duration: </span>
-                    <span class="playlist-item-duration"> val </span>
-                </a> -->
-
-                <!-- //MAKE CLASS -->
-                 <p style="position: relative; top: -7px;">
-                 <span class="text-small text-muted remove-bottom {{item.subscriptionStatus|subscriptionStatusClass}}">
-                <span class="playlist-item-status">valStat</span>
+                <span>{{item.name}}</span>
+            </p>
+            <p>
+                <span class="text-small text-muted remove-bottom {{item.subscriptionStatus|subscriptionStatusClass}}">
+                <span class="playlist-item-status" ng-click="playlistItemFactory.edit(item)">valStat</span>
                 </span>
-                </p>
-            </div>
-           
+            </p>
+        </div>
         <!-- Empty State -->
         <div ng-hide="factory.getItems().length">
             <p class="text-muted text-center remove-bottom"> Click Image, Video, Text or More to add to this Playlist </p>
@@ -76,11 +56,13 @@
 </div>
 
 
+
+<!-- PROTOTYPE CODE -->
 <script>
 // List with handle
 Sortable.create(listWithHandle, {
-  handle: '.arrows',
-  animation: 150
+    handle: '.arrows',
+    animation: 150
 });
 </script>
 <script type="text/ng-template" id="popover.html">
@@ -88,7 +70,3 @@ Sortable.create(listWithHandle, {
         Popover content
     </div>
 </script>
-
-
-
-
