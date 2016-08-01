@@ -14,6 +14,17 @@ $(document).on("click", "body", function () {
         "selectedBorder", 100, "linear");
     }
   });
+
+  $('.placeholder-item input:checkbox').change(function () {
+    if ($(this).is(":checked")) {
+      $(this).closest("li").addClass("selectedBorder", 100, "linear");
+    } else {
+      $(this).closest("li").removeClass("selectedBorder", 100, "linear");
+      $('input:checkbox.soloselect').not(this).closest("li").removeClass(
+        "selectedBorder", 100, "linear");
+    }
+  });
+  
   $('.folder input:checkbox').change(function () {
     if ($(this).is(":checked")) {
       $(this).closest("li").addClass("folder-extended", 100, "linear");

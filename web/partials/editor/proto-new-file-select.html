@@ -46,15 +46,14 @@
  </div>
   
 
-    <div class="file-empty-state content-box add-top" ng-hide="!EmptyState" ng-init="EmptyState=true" style="padding-top: 0;
-    padding-bottom: 10px;">
+    <div class="file-empty-state content-box add-top" ng-hide="!EmptyState" ng-init="EmptyState=true">
 
      <div class="container" id="pitchdeck" ng-init="trialActivated=false" ng-hide="trialActivated">
       <div>&nbsp;</div>
       <div class="add-bottom blank-state">
-          <div class="product-graphic" style="margin-top:20px;"> <img itemprop="image" class="img-responsive" src="https://s3.amazonaws.com/Store-Products/Rise-Vision/storage_image.png"> </div>
+          <div class="product-graphic"> <img itemprop="image" class="img-responsive" src="https://s3.amazonaws.com/Store-Products/Rise-Vision/storage_image.png"> </div>
           <div class="content-box-body ng-scope">
-              <div class="product-intro" style="margin-top:0;">
+              <div class="product-intro">
                   <h1>Storage</h1>
                   <p class="lead"><strong>Manage and deliver media to your digital signage displays, anywhere, anytime.</strong></p>
                   <p class="lead">Free 30 days trial. No credit card required.</p>
@@ -66,8 +65,8 @@
       </div>
 
 
-      <div ng-show="trialActivated" style="margin-bottom:99px;">
-      <p class="product-graphic" style="width: 100%;height: 24px;margin-top:83px;">You haven't uploaded any files yet! </p>
+      <div ng-show="trialActivated">
+      <p class="add-top">You haven't uploaded any files yet! </p>
       <span> Select <b>Upload Files</b>, <b>Upload Folder</b>, or <b>Create Folder</b>.</span><br/><br/>
       <div><img src="https://s3.amazonaws.com/ux-design/sprint_prototype/slides.svg" width="70px" height="70px">
       <span>Select a Folder to show and update Images and Videos as you add or remove them from the Folder.</span></div>
@@ -78,7 +77,7 @@
     </div>
 
    <div class="add-top" ng-show="!EmptyState">
-     <div class="col-xs-6" style="padding:0">
+     <div class="col-xs-6 remove-padding">
       <ol class="breadcrumb" ng-init="revealCrumb=false" ng-hide="revealCrumb">
           <li class="active">My Storage</li>
       </ol>
@@ -88,13 +87,13 @@
       </ol>
     </div>
     <div class="col-xs-6">
-     <search-filter filter-config="filterConfig" search="search" do-search="search.doSearch" ng-show="trialActivated" style="display: inline-block"></search-filter>
+     <search-filter filter-config="filterConfig" search="search" do-search="search.doSearch" ng-show="trialActivated"></search-filter>
     </div>
    </div>
 
 
      <!-- <p class="text-muted remove-bottom pull-left">Tip: You can drag and drop files here to upload them.</p> -->
-<div class="scrollable-list content-box" style="padding:4px;max-height:calc(100vh - 410px);width:100%" ng-hide="!gridView || EmptyState || revealCrumb" ng-show="!EmptyState">
+<div class="scrollable-list content-box" ng-hide="!gridView || EmptyState || revealCrumb" ng-show="!EmptyState">
     <ul class="list-unstyled pt-media-list">
      <!--  <li ng-click="selectFile('flowers_002.jpg')">
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
@@ -148,9 +147,10 @@
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
         <input type="checkbox"  class="checkbox"/>
       </li>
-      <li class="single-item">
-        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
+      <li class="placeholder-item">
+        <svg-icon p="riseWidgetVideo"></svg-icon>
         <input type="checkbox" class="checkbox" />
+        <span class="ellipsis">HorizonLine_001.webp</span>
       </li>
       <li class="single-item">
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
@@ -168,9 +168,10 @@
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_001.jpg">
         <input type="checkbox"  class="checkbox"/>
       </li>
-      <li class="single-item">
-        <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flower_003.jpg">
+      <li class="placeholder-item">
+        <svg-icon p="riseWidgetImage"></svg-icon>
         <input type="checkbox"  class="checkbox"/>
+        <span class="ellipsis">flower_001.jpeg</span>
       </li>
       <li class="single-item">
         <img src="https://s3.amazonaws.com/ux-design/sprint_prototype/flowers_002.jpg">
@@ -290,7 +291,7 @@
       </li>
     </ul>
 </div>
-<div class="scrollable-list content-box" style="padding:4px;max-height:calc(100vh - 410px);width:100%" ng-hide="!revealCrumb" ng-show="revealCrumb">
+<div class="scrollable-list content-box" ng-hide="!revealCrumb" ng-show="revealCrumb">
     <ul class="list-unstyled pt-media-list">
      
       <li>
@@ -308,7 +309,7 @@
     </ul>
 </div>
 
-<div class="scrollable-list content-box" style="padding:4px;max-height:calc(100vh - 410px);width:100%" ng-show="listView">
+<div class="scrollable-list content-box" ng-show="listView">
 <table class="table-2 table-hover table-selector multiple-selector">
   <thead>
     <tr>
@@ -369,7 +370,7 @@
     <tr class="clickable-row ng-scope" ng-click="fileClick(file);">
         <td class="col-sm-6">
             <span class="file" ng-class="{&quot;throttled-type&quot;: file.isThrottled &amp;&amp; !fileIsFolder(file)}">
-          <a style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" href="" data-toggle="tooltip" title="2016-03-08.jpg" class="ng-binding">
+          <a href="" data-toggle="tooltip" title="2016-03-08.jpg" class="ng-binding">
             <i class="fa" ng-class="{&quot;fa-exclamation&quot;: file.isThrottled &amp;&amp; !fileIsFolder(file), &quot;icon-red&quot;: file.isThrottled &amp;&amp; !fileIsFolder(file)}"></i>
             2016-03-08.jpg
           </a>
@@ -399,7 +400,7 @@
      <tr class="clickable-row ng-scope" ng-click="fileClick(file);">
         <td class="col-sm-6">
             <span class="file" ng-class="{&quot;throttled-type&quot;: file.isThrottled &amp;&amp; !fileIsFolder(file)}">
-          <a style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" href="" data-toggle="tooltip" title="2016-03-08.jpg" class="ng-binding">
+          <a href="" data-toggle="tooltip" title="2016-03-08.jpg" class="ng-binding">
             <i class="fa" ng-class="{&quot;fa-exclamation&quot;: file.isThrottled &amp;&amp; !fileIsFolder(file), &quot;icon-red&quot;: file.isThrottled &amp;&amp; !fileIsFolder(file)}"></i>
             2016-03-08.jpg
           </a>
@@ -418,7 +419,7 @@
      <tr class="clickable-row ng-scope" ng-click="fileClick(file);">
         <td class="col-sm-6">
             <span class="file" ng-class="{&quot;throttled-type&quot;: file.isThrottled &amp;&amp; !fileIsFolder(file)}">
-          <a style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" href="" data-toggle="tooltip" title="2016-03-08.jpg" class="ng-binding">
+          <a href="" data-toggle="tooltip" title="2016-03-08.jpg" class="ng-binding">
             <i class="fa" ng-class="{&quot;fa-exclamation&quot;: file.isThrottled &amp;&amp; !fileIsFolder(file), &quot;icon-red&quot;: file.isThrottled &amp;&amp; !fileIsFolder(file)}"></i>
             2016-03-08.jpg
           </a>
@@ -437,7 +438,7 @@
      <tr class="clickable-row ng-scope" ng-click="fileClick(file);">
         <td class="col-sm-6">
             <span class="file" ng-class="{&quot;throttled-type&quot;: file.isThrottled &amp;&amp; !fileIsFolder(file)}">
-          <a style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" href="" data-toggle="tooltip" title="2016-03-08.jpg" class="ng-binding">
+          <a  href="" data-toggle="tooltip" title="2016-03-08.jpg" class="ng-binding">
             <i class="fa" ng-class="{&quot;fa-exclamation&quot;: file.isThrottled &amp;&amp; !fileIsFolder(file), &quot;icon-red&quot;: file.isThrottled &amp;&amp; !fileIsFolder(file)}"></i>
             2016-03-08.jpg
           </a>
@@ -461,7 +462,7 @@
      <tr class="clickable-row ng-scope" ng-click="fileClick(file);">
         <td class="col-sm-6">
             <span class="file" ng-class="{&quot;throttled-type&quot;: file.isThrottled &amp;&amp; !fileIsFolder(file)}">
-          <a style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" href="" data-toggle="tooltip" title="2016-03-08.jpg" class="ng-binding">
+          <a  href="" data-toggle="tooltip" title="2016-03-08.jpg" class="ng-binding">
             <i class="fa" ng-class="{&quot;fa-exclamation&quot;: file.isThrottled &amp;&amp; !fileIsFolder(file), &quot;icon-red&quot;: file.isThrottled &amp;&amp; !fileIsFolder(file)}"></i>
             2016-03-08.jpg
           </a>
