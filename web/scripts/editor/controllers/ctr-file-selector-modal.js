@@ -22,7 +22,22 @@ angular.module('risevision.editor.controllers')
           name: 'DSC_083940000.jpg'
         }, {
           name: 'Weather Forecast And Conditions'
-        }];
+        },
+        {
+          name: 'Rose.jpg'
+        }, {
+          name: 'DSC_083940000.jpg'
+        }, {
+          name: 'Weather Forecast And Conditions'
+        },
+        {
+          name: 'Rose.jpg'
+        }, {
+          name: 'DSC_083940000.jpg'
+        }, {
+          name: 'Weather Forecast And Conditions'
+        }
+        ];
         console.log(files);
         $scope.$emit("filesPicked", files);
       }
